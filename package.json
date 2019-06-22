@@ -1,0 +1,22 @@
+{
+  "name": "ProjectCelz",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celz-2019/ProjectCelz.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/celz-2019/ProjectCelz/issues"
+  },
+  "homepage": "https://github.com/celz-2019/ProjectCelz#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
