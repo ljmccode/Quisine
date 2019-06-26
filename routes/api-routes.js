@@ -1,35 +1,35 @@
-var Recipes = require("../models/recipes");
-var Rating = require("../models/rating");
+const recipes = require("../models/recipes");
+const rating = require("../models/ratings");
 
 module.exports = function(app) {
   // API CALLS TO 'Recipes' TABLE
   app.get("/api/recipes", function(req, res) {
-    Recipes.getRecipes(req, res, function(data) {
+    recipes.getRecipes(req, res, function(data) {
       res.json(data);
     });
   });
 
-  app.post("/api/todos", function(req, res) {
-    Recipes.createRecipe(req, res, function(data) {
+  app.post("/api/recipes", function(req, res) {
+    recipes.addRecipe(req, res, function(data) {
       res.json(data);
     });
   });
 
-  app.put("/api/recipes/:id", function(req, res) {
-    Recipes.updateRecipe(req, res, function(data) {
+  app.put("/api/recipe/:id", function(req, res) {
+    recipes.updateRecipe(req, res, function(data) {
       res.json(data);
     });
   });
 
-  app.delete("/api/Recipes/:id", function(req, res) {
-    Recipes.deleteRecipe(req, res, function(data) {
+  app.delete("/api/recipe/:id", function(req, res) {
+    recipes.deleteRecipe(req, res, function(data) {
       res.json(data);
     });
   });
 
   // API CALLS TO 'Rating' TABLE
-  app.put("/api/recipes/:id", function(req, res) {
-    Rating.rateRecipe(req, res, function(data) {
+  app.put("/api/recipe/:id", function(req, res) {
+    rating.rateRecipe(req, res, function(data) {
       res.json(data);
     });
   });
