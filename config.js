@@ -1,13 +1,13 @@
 let config = {
-    local: {
-        mysql:{
-            url: process.env.DB_URL
-        },
-        apiKeys:{}
+  local: {
+    mysql: {
+      url: process.env.DB_URL
     },
     prod: {
-        mysql:{},
+        mysql:{
+            url: process.env.JAWSDB_URL
+        },
         apiKeys:{}
     }
 };
-module.exports = config[process.env.APP_ENV || 'local'];
+module.exports = config[process.env.APP_ENV || "local"];
