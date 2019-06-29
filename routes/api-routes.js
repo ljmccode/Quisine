@@ -28,11 +28,15 @@ module.exports = function(app) {
   });
 
   // API CALLS TO 'Rating' TABLE
-  app.put("/api/recipe/:id", function(req, res) {
+  app.post("/api/recipe/:id", function(req, res) {
     rating.rateRecipe(req, res, function(data) {
       res.json(data);
     });
   });
 
-  //TODO: Add Favorites/Saved Table...
+  app.put("/api/recipe/:id", function(req, res) {
+    rating.joinRecipe(req, res, function(data) {
+      res.json(data);
+    });
+  });
 };

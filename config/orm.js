@@ -1,9 +1,9 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    all: function (query, cb) {
-        var queryString = "SELECT * FROM " + query + ";";
-        connection.query(queryString, function (err, result) {
+    selectAll: function (query, cb) {
+        var queryString = "SELECT * FROM ??;";
+        connection.query(queryString, [query.table], function (err, result) {
             if (err) {
                 throw err;
             }
@@ -77,8 +77,7 @@ var orm = {
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});
 // orm.create("celz", "recipes", "Waffles", "website", "breakfast", function(){});
-// orm.create("recipes", {"name":'waffles', "status":1, "link":'website', "type":'breakfast'}, function(){});
-// orm.create("recipes", {"name":'waffles', "status":1, "link":'website', "type":'breakfast'}, function(){});
+// orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
 
 
 
