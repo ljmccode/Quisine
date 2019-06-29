@@ -1,9 +1,0 @@
-{  "local": {
-    "username": "root",
-    "password": "root",
-    "database": "celz",
-    "host": "localhost",
-    "port": 8889,
-    "dialect": "mysql"
-  }
-}
