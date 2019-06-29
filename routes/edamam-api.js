@@ -1,4 +1,4 @@
-// FOR POSSIBLE FUTURE USE IF WE DECIDE TO ADD THIRD PARTY API CALLS
+// // FOR POSSIBLE FUTURE USE IF WE DECIDE TO ADD THIRD PARTY API CALLS
 
 // const displayRecipeInfo = function() {
 //   //   var recipe = $(this).attr("data-name");
@@ -8,7 +8,7 @@
 //   var queryURL =
 //     "https://api.edamam.com/search?q=" +
 //     recipe +
-//     "&app_id=be446581&app_key=358c0fd05ef1cfd3bae813759c1efaf1&from=0&to=10";
+//     "&app_id=${appId}&app_key=${apiKey}&from=0&to=10";
 //   var queryURL2 = "/api/recipes";
 //   $.ajax({
 //     url: queryURL,

@@ -1,25 +1,33 @@
-CREATE SCHEMA `celz` ;
+DROP TABLE IF EXISTS `recipes`;
 
-USE 'celz';
+CREATE TABLE `recipes` (
+  `recipe_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `link` varchar(256) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  PRIMARY KEY (`recipe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `celz`.`recipes` (
-  `recipe_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(256) NOT NULL,
-  `status` TINYINT NOT NULL,
-  `link` VARCHAR(256) NOT NULL,
-  `type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`recipes_id`));
+DROP TABLE IF EXISTS `ratings`;
 
-CREATE TABLE `celz`.`ratings` (
-  `rating_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `rating` INT NULL,
-  `comments` VARCHAR(75) NULL,
-  `favorite` TINYINT NULL,
-  PRIMARY KEY (`rating_id`));
+CREATE TABLE `ratings` (
+  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating` int(11) NOT NULL,
+  `comments` varchar(75) NOT NULL DEFAULT '',
+  `favorite` tinyint(4) NOT NULL,
+  PRIMARY KEY (`rating_id`),
+  CONSTRAINT `fkrecipes` FOREIGN KEY (`rating_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `celz`.`ratings` 
-ADD CONSTRAINT `fkrecipes`
-  FOREIGN KEY (`rating_id`)
-  REFERENCES `celz`.`recipes` (`recipe_id`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
+
+##################### SEED DATA #####################
+
+INSERT INTO `recipes`
+    (`name`, `status`, `link`, `type`)
+VALUES
+    ('Tacos', 0, 'www.google.com', 'lunch');
+INSERT INTO `recipes`
+    (`name`, `status`, `link`, `type`)
+VALUES
+    ('Pasta', 0, 'www.yahoo.com', 'dinner');
