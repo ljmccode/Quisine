@@ -7,7 +7,12 @@ let config = {
         mysql:{
             url: process.env.JAWSDB_URL
         },
-        apiKeys:{}
+        //Edamam-api.js api keys
+        apiKeys:{
+          apiId: "be446581",
+          apiKey: "358c0fd05ef1cfd3bae813759c1efaf1"
+        }
     }
 };
+
 module.exports = config[process.env.APP_ENV || "local"];
