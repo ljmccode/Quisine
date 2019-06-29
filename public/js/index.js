@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('select');
     //var instances = M.FormSelect.init(elems, options);
 });
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.parallax');
+    //var instances = M.Parallax.init(elems, options);
+  });
 
 
 //MATERIALISE FUNTIONS
@@ -31,6 +35,7 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
     $('.modal').modal();
     $('select').formSelect();
+    $('.parallax').parallax();
 });
 
 
