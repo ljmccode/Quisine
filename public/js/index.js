@@ -39,8 +39,6 @@ $(document).ready(function () {
 });
 
 
-
-
 //TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
 
 //adding recipe
