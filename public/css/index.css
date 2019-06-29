@@ -5,14 +5,18 @@ html {
     -o-background-size: cover;
     background-size: cover;
   }
-
+.table-of-contents a{
+    font-size: 14pt;
+    font-weight: bold;
+    color: lightgrey;
+}
 .sidenav-trigger{
     padding: 5px;
 }
 .card{
     width: 300px;
 
-    float: left;
+    /* float: left; */
 }
 
 .scroll-box {
@@ -25,16 +29,20 @@ html {
     flex-direction: column; */
     /* justify-content: center; */
 }
+.parallax-container {
+    height: 300px;
+  }
 
-
-
+#results{
+    height: auto;
+}
 
 
 
 
 /****** Style Star Rating Widget *****/
 fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
+/* body{ margin: 20px; } */
 h1 { font-size: 1.5em; margin: 10px; }
 
 
