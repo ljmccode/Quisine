@@ -1,18 +1,8 @@
 var connection = require("../config/connection.js");
 
-function printQuestionMarks(num) {
-    var arr = [];
-  
-    for (var i = 0; i < num; i++) {
-      arr.push("?");
-    }
-  
-    return arr.toString();
-  }
-
 var orm = {
-    selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+    all: function (query, cb) {
+        var queryString = "SELECT * FROM " + query + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
@@ -21,7 +11,7 @@ var orm = {
         });
     },
 
-    selectRated: function (query, cb) {
+    join: function (query, cb) {
         //SELECT * FROM recipes INNER JOIN ratings ON ratings.rating_id = recipes.recipe_id;
         var queryString = "SELECT * FROM ?? INNER JOIN ?? ON ??";
         connection.query(
@@ -36,13 +26,14 @@ var orm = {
         });
     },
 
-    create: function (db, table, values, cb){
-        //INSERT INTO `celz`.`recipes` (`name`, `status`, `link`, `type`) VALUES ('Pizza', '1', 'www.dominos.com', 'dinner');
-        var queryString = "INSERT INTO ??.?? (name, status, link, type) VALUES ?";
-        connection.query(
+    create: function (query, cb){
+        //INSERT INTO recipes (name, status, link, type) VALUES ('test', 1, 'www.w2schools.com', 'test');
+        var queryString = "INSERT INTO ?? SET ?";
+        var insertQuery = connection.query(
             queryString,
-            [db, table, values],
+            [query.table, query.values],
             function (err, result) {
+                console.log("Insert Query", insertQuery.sql);
                 if (err) {
                     throw err;
                 }
@@ -51,32 +42,43 @@ var orm = {
             });
     },
 
-    createAdvanced: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-    
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-    
-        console.log(queryString);
-    
-        connection.query(queryString, vals, function(err, result) {
+    update: function (query, cb){
+      //UPDATE ratings SET rating = 3, comments = 'meh', favorite = 1 WHERE rating_id = 1;;
+      var queryString = "UPDATE ?? SET ? WHERE ??";
+      var insertQuery = connection.query(
+        queryString,
+        [query.table, query.set[0], query.where[0]],
+        function(err, result) {
+          console.log("Insert Query", insertQuery.sql);
           if (err) {
             throw err;
           }
-    
           cb(result);
           console.log(result);
         });
-      }
+    },
+
+    delete: function (query, cb){
+      //UPDATE ratings SET rating = 3, comments = 'meh', favorite = 1 WHERE rating_id = 1;;
+      var queryString = "DELETE FROM ?? WHERE ?";
+      var insertQuery = connection.query(
+        queryString,
+        [query.table, query.where[0]],
+        function(err, result) {
+          console.log("Insert Query", insertQuery.sql);
+          if (err) {
+            throw err;
+          }
+          cb(result);
+          console.log(result);
+        });
+    }
 }
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});
 // orm.create("celz", "recipes", "Waffles", "website", "breakfast", function(){});
-orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
+// orm.create("recipes", {"name":'waffles', "status":1, "link":'website', "type":'breakfast'}, function(){});
+// orm.create("recipes", {"name":'waffles', "status":1, "link":'website', "type":'breakfast'}, function(){});
 
 
 

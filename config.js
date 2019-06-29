@@ -9,5 +9,6 @@ let config = {
         },
         apiKeys:{}
     }
+  }
 };
 module.exports = config[process.env.APP_ENV || "local"];
