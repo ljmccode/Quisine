@@ -1,6 +1,6 @@
 const orm = require("../config/orm");
 
-const recipes = {
+let recipes = {
   getRecipes: function(req, res) {
     orm.selectAll(
       {
@@ -15,10 +15,12 @@ const recipes = {
     orm.create(
       {
         table: "recipes",
-        recipe_name: req.body.recipe_name,
-        new: true,
-        link: req.body.link,
-        type: req.body.type
+        values: {
+        "name": req.body.name,
+        "status": 1,
+        "link": req.body.link,
+        "type": req.body.type
+        }
       },
       function(data) {
         res.json(data);
@@ -31,12 +33,15 @@ const recipes = {
         table: "recipes",
         set: [
           {
-            recipe_name: req.body.recipe_name
-          }
+          "name": req.body.name,
+          "status": req.body.status,
+          "link": req.body.link,
+          "type": req.body.type
+        }
         ],
         where: [
           {
-            recipe_id: req.body.recipe_id
+            "recipe_id": req.params.id
           }
         ]
       },
@@ -51,7 +56,7 @@ const recipes = {
         table: "recipes",
         where: [
           {
-            recipe_id: req.body.recipe_id
+            "recipe_id": req.params.id
           }
         ]
       },

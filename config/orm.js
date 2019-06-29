@@ -21,15 +21,7 @@ var orm = {
         });
     },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     join: function (query, cb) {
-=======
-    selectRated: function (query, cb) {
->>>>>>> 7806b612b54545fadd430f7f6e3450601f7ccc08
-=======
-    join: function (query, cb) {
->>>>>>> d58387c6705b39dd5d18c7de0d3b698682fee1ae
         //SELECT * FROM recipes INNER JOIN ratings ON ratings.rating_id = recipes.recipe_id;
         var queryString = "SELECT * FROM ?? INNER JOIN ?? ON ??";
         connection.query(
@@ -43,11 +35,6 @@ var orm = {
             console.log(result)
         });
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> d58387c6705b39dd5d18c7de0d3b698682fee1ae
 
     create: function (db, table, values, cb){
         //INSERT INTO `celz`.`recipes` (`name`, `status`, `link`, `type`) VALUES ('Pizza', '1', 'www.dominos.com', 'dinner');
@@ -85,15 +72,11 @@ var orm = {
           console.log(result);
         });
       }
-<<<<<<< HEAD
->>>>>>> 7806b612b54545fadd430f7f6e3450601f7ccc08
-=======
->>>>>>> d58387c6705b39dd5d18c7de0d3b698682fee1ae
 }
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});
 // orm.create("celz", "recipes", "Waffles", "website", "breakfast", function(){});
-orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
+// orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
 
 
 

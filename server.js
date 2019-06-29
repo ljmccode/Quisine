@@ -5,14 +5,10 @@ var app = express();
 var port = process.env.PORT || 9000;
 var config = require('./config/config');
 
-app.use(express.static(__dirname + './public')); // you should change this to be wherever your html files are
+app.use(express.static(__dirname + './public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.listen(port);
 
 require("./routes/api-routes")(app);
-//@TODO Delete below after you verify the the app is working
-app.route('/').get(function(request, response) {
-    response.json({message: "Here"});
-});
