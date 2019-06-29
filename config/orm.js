@@ -76,7 +76,7 @@ var orm = {
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});
 // orm.create("celz", "recipes", "Waffles", "website", "breakfast", function(){});
-orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
+// orm.create("celz", "recipes", "('waffles', 1, 'website', 'breakfast')", function(){});
 
 
 
