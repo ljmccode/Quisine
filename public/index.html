@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CELZ</title>
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/index.css" media="screen" title="no title">
+
+</head>
+
+<body>
+
+
+<!-- 
+    TO DO:
+        Parallax effect for scrolling
+        Toasts for updating ratings, AND adding Recipes 
+        Add results modal or container
+        Scrollspy set up (link #id on submit button, might auto scroll to that point [href="#results"])
+-->
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////       NAVBAR       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <nav>
+            <div class="nav-wrapper">
+              <a href="#!" class="brand-logo center hide-on-small-only">Logo</a>
+              <a href="#!" class="brand-logo left show-on-small hide-on-med-and-up">Logo</a>
+              <ul class="right">
+                <li id="home-nav" class="active"><a href="#home">Home</a></li>
+                <li id="search-nav" ><a href="#search">Search</a></li>
+                <li id="results-nav" ><a href="#results">Results</a></li>
+              </ul>
+            </div>
+          </nav>
+
+
+
+          <!-- <div class="parallax-container">
+                <div class="parallax"><img src="images/indexBG.jpg"></div>
+              </div> -->
+
+
+    <!-- <nav> <a href="#" data-target="slide-out" class="sidenav-trigger btn">Side nav demo</a> </nav> -->
+
+    <!-- <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="container">
+
+
+                <form class="col s12" method="post">
+                    <div class='row'>
+                        <div class='col s12'>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input class='validate' type='email' name='email' id='email' />
+                            <label for='email'>Enter your email</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input class='validate' type='password' name='password' id='password' />
+                            <label for='password'>Enter your password</label>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class='row'>
+                        <button type='submit' name='btn_login'
+                            class='col s12 btn btn-large waves-effect indigo'>Login</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+            <a href="#!">Create account</a>
+        </li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      PORTALS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- <div class="section white">
+            <div class="row container">
+              <div class="col s12 m10 offset-m1">
+                <h2 class="header">Parallax</h2>
+                <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+        
+              </div>
+            </div>
+          </div> -->
+
+
+
+    <!-- <div class="container portals"> -->
+    <div class="row portals center-align">
+
+        <div class="col m4">
+            <div class="card small all-recipes ">
+                <div class="card-image waves-effect waves-block waves-light all-recipes">
+                    <img class="activator" src="images/all.png">
+                </div>
+                <div class="card-content all-recipes">
+                    <span class="card-title activator grey-text text-darken-4 all-recipes">All Recipes</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col m4">
+            <div class="card small all-recipes ">
+                <div class="card-image waves-effect waves-block waves-light modal-trigger" href="#modal1">
+                    <img class="activator" src="images/search.png">
+                </div>
+                <div class="card-content modal-trigger" href="#modal1">
+                    <span class="card-title activator grey-text text-darken-4 modal-trigger" href="#modal1">Search
+                        Recipes</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col m4">
+            <div class="card small all-recipes ">
+                <div class="card-image waves-effect waves-block waves-light modal-trigger" href="#modal2">
+                    <img class="activator" src="images/all.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Add Recipe</span>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////       MODALS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- SEARCH MODAL -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>SEARCH RECIPES</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">book</i>
+                            <input id="icon_prefix" type="text" class="validate search_by_name">
+                            <label for="icon_prefix">Recipe Name</label>
+                        </div>
+                    </div>
+                </form>
+                <a href="#!" class="search_name modal-close waves-effect waves-green btn-flat right">SUBMIT</a>
+            </div>
+
+            <div class="divider"></div>
+            <br>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">fastfood</i>
+                    <select class="search_by_type">
+                        <option value="" disabled selected>Choose type of meal</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="dessert">Dessert</option>
+                    </select>
+                    <label>Type of Meal</label>
+                </div>
+            </div>
+            <label>Rating</label>
+            <div class="row">
+                <div class="col s4">
+
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" class="star_rating" value="5" /><label class="full"
+                            for="star5" title="Awesome"></label>
+
+                        <input type="radio" id="star4" name="rating" class="star_rating" value="4" /><label class="full"
+                            for="star4" title="Great"></label>
+
+                        <input type="radio" id="star3" name="rating" class="star_rating" value="3" /><label class="full"
+                            for="star3" title="Okay"></label>
+
+                        <input type="radio" id="star2" name="rating" class="star_rating" value="2" /><label class="full"
+                            for="star2" title="Bad"></label>
+
+                        <input type="radio" id="star1" name="rating" class="star_rating" value="1" /><label class="full"
+                            for="star1" title="Blegh"></label>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="search_other modal-close waves-effect waves-green btn-flat">SUBMIT</a>
+        </div>
+    </div>
+
+
+    <!-- ADD MODAL -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>ADD RECIPE</h4>
+            <form class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">book</i>
+                        <input id="input_text" type="text" class="validate recipe_name">
+                        <label for="input_text">Recipe Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">fastfood</i>
+                        <select class="type">
+                            <option value="" disabled selected>Choose type of meal</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                        <label>Type of Meal</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">link</i>
+                        <input id="input_text2" type="text" class="validate recipe_link">
+                        <label for="input_text2">Recipe Link</label>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="add_recipe modal-close waves-effect waves-green btn-flat">SUBMIT</a>
+        </div>
+    </div>
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      RESULTS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      SCRIPTS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <script src="./js/index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script> -->
+
+</body>
+
+</html>
