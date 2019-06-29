@@ -20,9 +20,42 @@
 
 <body>
 
+
+<!-- 
+    TO DO:
+        Parallax effect for scrolling
+        Toasts for updating ratings, AND adding Recipes 
+        Add results modal or container
+        Scrollspy set up (link #id on submit button, might auto scroll to that point [href="#results"])
+-->
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////       NAVBAR       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <nav>
+            <div class="nav-wrapper">
+              <a href="#!" class="brand-logo center hide-on-small-only">Logo</a>
+              <a href="#!" class="brand-logo left show-on-small hide-on-med-and-up">Logo</a>
+              <ul class="right">
+                <li id="home-nav" class="active"><a href="#home">Home</a></li>
+                <li id="search-nav" ><a href="#search">Search</a></li>
+                <li id="results-nav" ><a href="#results">Results</a></li>
+              </ul>
+            </div>
+          </nav>
+
+
+
+          <!-- <div class="parallax-container">
+                <div class="parallax"><img src="images/indexBG.jpg"></div>
+              </div> -->
+
+
     <!-- <nav> <a href="#" data-target="slide-out" class="sidenav-trigger btn">Side nav demo</a> </nav> -->
 
-    <ul id="slide-out" class="sidenav">
+    <!-- <ul id="slide-out" class="sidenav">
         <li>
             <div class="container">
 
@@ -58,7 +91,21 @@
             <a href="#!">Create account</a>
         </li>
     </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      PORTALS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- <div class="section white">
+            <div class="row container">
+              <div class="col s12 m10 offset-m1">
+                <h2 class="header">Parallax</h2>
+                <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+        
+              </div>
+            </div>
+          </div> -->
 
 
 
@@ -104,6 +151,10 @@
 
     </div>
 
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////       MODALS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- SEARCH MODAL -->
     <div id="modal1" class="modal">
         <div class="modal-content">
@@ -113,12 +164,12 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">book</i>
-                            <input id="icon_prefix" type="text" class="validate">
+                            <input id="icon_prefix" type="text" class="validate search_by_name">
                             <label for="icon_prefix">Recipe Name</label>
                         </div>
                     </div>
                 </form>
-                <a href="#!" class="search-name modal-close waves-effect waves-green btn-flat right">SUBMIT</a>
+                <a href="#!" class="search_name modal-close waves-effect waves-green btn-flat right">SUBMIT</a>
             </div>
 
             <div class="divider"></div>
@@ -126,7 +177,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">fastfood</i>
-                    <select>
+                    <select class="search_by_type">
                         <option value="" disabled selected>Choose type of meal</option>
                         <option value="breakfast">Breakfast</option>
                         <option value="lunch">Lunch</option>
@@ -141,19 +192,19 @@
                 <div class="col s4">
 
                     <fieldset class="rating">
-                        <input type="radio" id="star5" name="rating" class="star-rating" value="5" /><label class="full"
+                        <input type="radio" id="star5" name="rating" class="star_rating" value="5" /><label class="full"
                             for="star5" title="Awesome"></label>
 
-                        <input type="radio" id="star4" name="rating" class="star-rating" value="4" /><label class="full"
+                        <input type="radio" id="star4" name="rating" class="star_rating" value="4" /><label class="full"
                             for="star4" title="Great"></label>
 
-                        <input type="radio" id="star3" name="rating" class="star-rating" value="3" /><label class="full"
+                        <input type="radio" id="star3" name="rating" class="star_rating" value="3" /><label class="full"
                             for="star3" title="Okay"></label>
 
-                        <input type="radio" id="star2" name="rating" class="star-rating" value="2" /><label class="full"
+                        <input type="radio" id="star2" name="rating" class="star_rating" value="2" /><label class="full"
                             for="star2" title="Bad"></label>
 
-                        <input type="radio" id="star1" name="rating" class="star-rating" value="1" /><label class="full"
+                        <input type="radio" id="star1" name="rating" class="star_rating" value="1" /><label class="full"
                             for="star1" title="Blegh"></label>
 
                     </fieldset>
@@ -161,7 +212,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="search-other modal-close waves-effect waves-green btn-flat">SUBMIT</a>
+            <a href="#!" class="search_other modal-close waves-effect waves-green btn-flat">SUBMIT</a>
         </div>
     </div>
 
@@ -205,11 +256,22 @@
             </form>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="add-recipe modal-close waves-effect waves-green btn-flat">SUBMIT</a>
+            <a href="#!" class="add_recipe modal-close waves-effect waves-green btn-flat">SUBMIT</a>
         </div>
     </div>
 
 
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      RESULTS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////      SCRIPTS       ///////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <script src="./js/index.js"></script>
