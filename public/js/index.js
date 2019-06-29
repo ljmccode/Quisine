@@ -29,81 +29,91 @@ function buildResults() {
     //AJAX CALL
 
     // `name`, `status`, `link`, `type`
+    // {
+    //     recipe_id: 7,
+    //     name: "",
+    //     status: 0,
+    //     link: '',
+    //     type: '',
+    //     rating: ,
+    //     comments: "This is a comment",
+    //     favorite: 0
+    // }
+
     var testArr = [
         {
             recipe_id: 1,
             name: "spaghetti",
             status: 0,
             link: 'https://www.allrecipes.com/recipe/158140/spaghetti-sauce-with-ground-beef/',
-            type: 'dinner',
-            rating: 4,
-            comments: "This is a comment",
-            favorite: 0
+            type: 'dinner'
         },
         {
             recipe_id: 2,
             name: "waffles",
             status: 0,
             link: 'https://www.allrecipes.com/recipe/22180/waffles-i/',
-            type: 'breakfast',
-            rating: 3,
-            comments: "This is a comment",
-            favorite: 0
+            type: 'breakfast'
         },
         {
             recipe_id: 3,
-            name: "",
+            name: "ramen",
             status: 0,
-            link: '',
-            type: '',
-            rating: 2,
-            comments: "This is a comment",
-            favorite: 0
+            link: 'https://www.foxandbriar.com/easy-chicken-ramen/',
+            type: 'lunch'
         },
         {
             recipe_id: 4,
-            name: "",
+            name: "Chicken noodle Soup",
             status: 0,
-            link: '',
-            type: '',
-            rating: ,
-            comments: "This is a comment",
-            favorite: 0
+            link: 'https://www.tasteofhome.com/recipes/the-ultimate-chicken-noodle-soup/',
+            type: 'lunch'
         },
         {
             recipe_id: 5,
-            name: "",
+            name: "brownies",
             status: 0,
-            link: '',
-            type: '',
-            rating: ,
-            comments: "This is a comment",
-            favorite: 0
+            link: 'https://thestayathomechef.com/brownie-recipe/',
+            type: 'dessert'
         },
         {
             recipe_id: 6,
-            name: "",
+            name: "Omelette",
             status: 0,
-            link: '',
-            type: '',
-            rating: ,
-            comments: "This is a comment",
-            favorite: 0
+            link: 'https://www.incredibleegg.org/recipe/basic-french-omelet/',
+            type: 'breakfast'
         },
         {
             recipe_id: 7,
-            name: "",
+            name: "chocolate cake",
             status: 0,
-            link: '',
-            type: '',
-            rating: ,
-            comments: "This is a comment",
-            favorite: 0
-        },
-
+            link: 'https://thestayathomechef.com/the-most-amazing-chocolate-cake/',
+            type: 'dessert'
+        }
     ]
+
+    for(var i in testArr){
+        $(makeCard(testArr[i])).appendTo('#results-cards');
+    }
+
 }
-function makeCard(obj){
+function makeCard(obj) {
+
+    var a = $('<a>', { class: 'modal-trigger card-link', href:"#modal1", id: obj.recipe_id });
+    var card = $('<div>', { class: 'card small left' }).appendTo(a);
+    var cardIMG = $('<div>', { class: 'card-image' }).appendTo(card);
+    $('<img>', { src: 'images/sample-1.jpg' }).appendTo(cardIMG);
+    var content = $('<div>', { class: 'card-content' }).appendTo(card);
+    $('<span>', { class: 'card-title' }).text(obj.name).appendTo(content);
+
+
+    return a;
+
+    // $('<div>', {
+    //     class: 'row',
+    //     id: arr[i],
+    //     value: i
+    //   }).text(arr[i]).appendTo('#buttons');
 
 }
 
