@@ -1,60 +1,78 @@
+// rating variable, changes on click with function
+var rating = 0;
 
-// On load
-$(function () {
-    // new recipe added on submit btn
-    $(".add_recipe").on("submit", function (event) {
-        event.preventDefault();
 
-        var newRecipe = {
-            name: $("#recipe_name").val().trim(),
-            status: 1,
-            link: $("#recipe_link").val().trim(),
-            type: $("#types").find(":selected").text()
-        };
+//star rating value changer
+$(document).on("click", ".star_rating", getRatingValue);
+function getRatingValue() {
+    rating = $(this).attr("value");
+    console.log(rating);
+}
 
-        // posts recipe to database with new recipe status true
-        $.ajax("/api/recipes", {
-            type: "POST",
-            data: newRecipe
-        }).then(function() {
-            console.log("Recipe added");
-            // Reloads page with updates
-            location.reload();
-        });
-    });
 
-    $(".rate_recipe").on("click", function (event) {
-        event.preventDefault();
 
-        var id = $(this).data("id");
-        var newRecipe = {
-            status: 0
-        };
-
-        // updates recipe in database to status not new once rating button is clicked
-        $.ajax("/api/recipes/" + id, {
-            type: "PUT",
-            data: newRecipe
-        }).then(function () {
-            console.log("You have rated this recipe");
-            location.reload();
-        });
-    });
-
-    
-    $(".trash_recipe").on("click", function(event) {
-        event.preventDefault();
-        var id = $(this).data("id");
-    
-        // deletes recipe from database upon clicking trash button
-        $.ajax({
-          type: "DELETE",
-          url: "/api/recipes/" + id
-        }).then(function() {
-            console.log("trashed recipe", id);
-            // Reload the page to get the updated list
-            location.reload();
-          }
-        );
-      });
+//MATERIALISE LISTENERS
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.sidenav');
+    //var instances = M.Sidenav.init(elems, options);
 });
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    //var instances = M.Modal.init(elems, options);
+});
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('select');
+    //var instances = M.FormSelect.init(elems, options);
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.parallax');
+    //var instances = M.Parallax.init(elems, options);
+  });
+
+
+//MATERIALISE FUNTIONS
+$(document).ready(function () {
+    $('.sidenav').sidenav();
+    $('.modal').modal();
+    $('select').formSelect();
+    $('.parallax').parallax();
+});
+
+
+
+
+//TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
+
+//adding recipe
+$(document).on("click", ".add_recipe", getValues);
+function getValues() {
+    event.preventDefault();
+    var name = $('.recipe_name').val();
+    console.log(name);
+
+    var type = $('.type').val();
+    console.log(type);
+
+    var link = $('.recipe_link').val();
+    console.log(link);
+}
+
+//search recipe name
+$(document).on("click", ".search_name", getNameValues);
+function getNameValues() {
+    event.preventDefault();
+    var name = $('.search_by_name').val();
+    console.log(name);
+}
+
+//search recipe by other
+$(document).on("click", ".search_other", getOtherValues);
+function getOtherValues() {
+    event.preventDefault();
+    
+    var type = $('.search_by_type').val();
+    console.log(type);
+
+    console.log('Rating Func: ' + rating)
+}
+

@@ -1,0 +1,75 @@
+html { 
+    background: url(../images/indexBG.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+.sidenav-trigger{
+    padding: 5px;
+}
+.card{
+    width: 300px;
+
+    float: left;
+}
+
+.scroll-box {
+    overflow-y: scroll;
+    height: 100%;
+    padding: 1rem
+}
+.portals{
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: center; */
+}
+
+
+
+
+
+
+
+/****** Style Star Rating Widget *****/
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: material-icons;
+  display: inline-block;
+  content: "☆";
+}
+
+.rating > .half:before { 
+  content: "★";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
