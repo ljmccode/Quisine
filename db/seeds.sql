@@ -1,5 +1,7 @@
-INSERT INTO recipes
-    (name, status, link, type)
+##################### SEED DATA #####################
+
+INSERT INTO `recipes`
+    (`name`, `status`, `link`, `type`)
 VALUES
     ("Mexican Street Tacos", 0, "https://damndelicious.net/2019/04/18/mexican-street-tacos/", "lunch"),
     ("Gnocchi with Sage and Parmesan", 0, "https://www.bonappetit.com/recipe/gnocchi-sage-butter-parmesan", "dinner"),
@@ -13,3 +15,4 @@ VALUES
     ("Israeli Couscous Salad", 0, "https://greenvalleykitchen.com/israeli-couscous-salad-summer-vegetables/", "lunch"),
     ("Cheesecake Factory Cheesecake", 0, "https://www.myrecipes.com/recipe/cheesecake-factory-original-cheesecake", "dessert"),
     ("Margherita Pizza", 0, "https://www.abeautifulplate.com/the-best-homemade-margherita-pizza/", "dinner");
+
