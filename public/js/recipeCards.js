@@ -81,74 +81,46 @@ var testRatingArr = [
 /////      UPPER CASE ARE TO DO ITEMS     /////
 ///////////////////////////////////////////////
 
-// rating variable, changes on click with function
-var searchRating = 0;
-//search star rating value changer
-$(document).on("click", ".search-rating", getSearchRatingValue);
-function getSearchRatingValue() {
-    searchRating = $(this).attr("value");
-    console.log(searchRating);
+
+//Show results container
+$(document).on("click", ".activate-results", showResults);
+function showResults() {
+    $('#results').removeClass("hide");
+
+    // build results
+    buildResults();
+
+    //scroll to results
+    var position = $('#results').offset().top;
+    $("body, html").animate({
+        scrollTop: position
+    } /* speed */);
+}
+function buildResults() {
+    //AJAX CALL
+
+    for (var i in testRecipeArr) {
+        $(makeCard(testRecipeArr[i])).appendTo('#results-cards');
+    }
+}
+function makeCard(obj) {
+
+    var a = $('<a>', { class: 'modal-trigger card-link', href: "#modal1", id: obj.recipe_id });
+    var card = $('<div>', { class: 'card small left' }).appendTo(a);
+    var cardIMG = $('<div>', { class: 'card-image' }).appendTo(card);
+    $('<img>', { src: 'images/sample-1.jpg' }).appendTo(cardIMG);
+    var content = $('<div>', { class: 'card-content' }).appendTo(card);
+    $('<span>', { class: 'card-title' }).text(obj.name).appendTo(content);
+
+
+    return a;
+
+    // $('<div>', {
+    //     class: 'row',
+    //     id: arr[i],
+    //     value: i
+    //   }).text(arr[i]).appendTo('#buttons');
+
 }
 
-
-
-//Materialise Functions
-$(document).ready(function () {
-    // Closes comment box at event
-    var closeComment = function () {
-        var elem = document.querySelector('.collapsible');
-        var instance = M.Collapsible.getInstance(elem);
-        instance.close(0);
-    };
-
-    $('.sidenav').sidenav();
-    $('.modal').modal({
-        onCloseEnd: closeComment,
-        opacity: 0.5
-    })
-    $('select').formSelect();
-    $('.parallax').parallax();
-    $('.scrollspy').scrollSpy({
-        throttle: 50
-    });
-    $('.materialboxed').materialbox();
-    $('.collapsible').collapsible();
-});
-
-
-
-//TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
-
-//adding recipe
-$(document).on("click", ".add_recipe", getValues);
-function getValues() {
-    event.preventDefault();
-    var name = $('.recipe_name').val();
-    console.log(name);
-
-    var type = $('.type').val();
-    console.log(type);
-
-    var link = $('.recipe_link').val();
-    console.log(link);
-}
-
-//search recipe name
-$(document).on("click", ".search_name", getNameValues);
-function getNameValues() {
-    event.preventDefault();
-    var name = $('.search_by_name').val();
-    console.log(name);
-}
-
-//search recipe by other
-$(document).on("click", ".search_other", getOtherValues);
-function getOtherValues() {
-    event.preventDefault();
-
-    var type = $('.search_by_type').val();
-    console.log(type);
-
-    console.log('Rating Func: ' + searchRating)
-}
 
