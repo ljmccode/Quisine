@@ -1,15 +1,5 @@
 var connection = require("../config/connection.js");
 
-function printQuestionMarks(num) {
-    var arr = [];
-  
-    for (var i = 0; i < num; i++) {
-      arr.push("?");
-    }
-  
-    return arr.toString();
-  }
-
 var orm = {
     selectAll: function (query, cb) {
         var queryString = "SELECT * FROM ??;";
@@ -32,7 +22,7 @@ var orm = {
                 throw err;
             }
             cb(result);
-            console.log(result)
+            console.log(result.sql)
         });
     },
 
@@ -50,28 +40,6 @@ var orm = {
                 console.log(result);
             });
     },
-
-    createAdvanced: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-    
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-    
-        console.log(queryString);
-    
-        connection.query(queryString, vals, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
-          console.log(result);
-        });
-      }
 }
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});

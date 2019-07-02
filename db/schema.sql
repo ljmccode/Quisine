@@ -19,5 +19,3 @@ CREATE TABLE `ratings` (
   PRIMARY KEY (`rating_id`),
   CONSTRAINT `fkrecipes` FOREIGN KEY (`rating_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-

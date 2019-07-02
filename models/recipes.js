@@ -18,7 +18,7 @@ let recipes = {
         values: {
         "name": req.body.name,
         "status": 1,
-        "link": req.body.link,
+        "link": req.body.link.stringify(),
         "type": req.body.type
         }
       },
@@ -35,7 +35,7 @@ let recipes = {
           {
           "name": req.body.name,
           "status": req.body.status,
-          "link": req.body.link,
+          "link": req.body.link.stringify(),
           "type": req.body.type
         }
         ],

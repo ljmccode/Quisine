@@ -8,12 +8,13 @@ var ratings = {
         tableTwo: "ratings",
         on: [
           {
-            "ratings.ratings_id": req.body.recipes.recipe_id
+            "ratings.ratings_id": req.params.id
           }
         ]
       },
       function(result) {
-        res.json(result);
+        // res.json(result);
+        console.log(result.sql);
       }
     );
   },
@@ -34,5 +35,6 @@ var ratings = {
     );
   }
 };
+ratings.joinRated();
 
 module.exports = ratings;
