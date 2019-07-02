@@ -18,6 +18,9 @@ html {
 
     /* float: left; */
 }
+.modal { 
+    max-height: 90%;
+}
 
 .scroll-box {
     overflow-y: scroll;
@@ -36,8 +39,25 @@ html {
 #results{
     height: auto;
 }
-
-
+.fav-btn, .bin-btn{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.fav-btn:focus, .bin-btn:focus {
+    border: none;
+    background-color: Transparent;
+}
+.fav-icon{
+    color: red;
+}
+.bin-btn{
+    font-size: 12pt;
+    padding-top: 10px;
+}
 
 
 /****** Style Star Rating Widget *****/
