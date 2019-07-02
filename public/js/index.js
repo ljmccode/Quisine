@@ -96,7 +96,7 @@ function getSearchRatingValue() {
 
 //Materialise Functions
 $(document).ready(function () {
-
+    //Materialise custom options
     // Closes comment box at event
     var closeComment = function () {
         var elem = document.querySelector('.collapsible');
@@ -104,6 +104,7 @@ $(document).ready(function () {
         instance.close(0);
     };
 
+    // Materialise create instances and link options
     $('.sidenav').sidenav();
     $('.modal').modal({
         onCloseEnd: closeComment,
@@ -148,6 +149,7 @@ $(document).ready(function () {
         }
     }
 
+    
     $(document).on("click", ".search_other", isRatingSelected);
     // checks if rating is selected
     function isRatingSelected() {
