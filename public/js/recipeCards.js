@@ -96,6 +96,7 @@ function showResults() {
         scrollTop: position
     } /* speed */);
 }
+// Builds Results container and gets DB info
 function buildResults() {
     //AJAX CALL
 
@@ -103,6 +104,7 @@ function buildResults() {
         $(makeCard(testRecipeArr[i])).appendTo('#results-cards');
     }
 }
+// Makes a single card with the given object
 function makeCard(obj) {
 
     var a = $('<a>', { class: 'modal-trigger card-link', href: "#modal1", id: obj.recipe_id });

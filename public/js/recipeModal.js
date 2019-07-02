@@ -124,6 +124,9 @@ function updateFav() {
 // Delete icon on click
 $(document).on("click", ".bin-btn", deleteRecipe);
 function deleteRecipe() {
+    // NEED TO ADD CONFIRMATION!!
+
+
     let recID = $(this).attr('recipe_id');
     // If rating attr is not defined then INSERT row in ratings table
     if ($('.bin-btn').attr('rating_id') === "undefined") {
@@ -198,15 +201,18 @@ function populateModal() {
         // Add rating id to bin btn
         $('.bin-btn').attr('rating_id', ratObj.rating_id);
 
+        //if the rating row has a rating, fill them appropriately
         if (ratObj.rating) {
-            buildRatingStars(ratObj.rating)
+            fillRatingStars(ratObj.rating)
         }
 
+        //if the rating row has a comment, fill it appropriately
         if (ratObj.comments) {
             $('#textarea1').val(ratObj.comments);
             M.textareaAutoResize($('#textarea1'));
         }
-
+        
+        //if the rating row is a fav, fill it appropriately
         if (ratObj.favorite == 1) {
             $('.fav-icon').text('favorite');
         }
@@ -219,7 +225,7 @@ function populateModal() {
     $('.modal-rating').attr('recipe_id', recObj.recipe_id);
 
 }
-function buildRatingStars(rating) {
+function fillRatingStars(rating) {
     buildRatingSelector();
     // Change value of rating selector
     // jQuery v1.6 and above
@@ -247,9 +253,4 @@ function buildRatingSelector() {
     }
     $(fieldset).appendTo('.recipe-modal-header');
 }
-
-
-// DELETE BUTTON FUNCTIONALITY
-// CONFIRMATION POP UP
-// DB DELETE CALL
 
