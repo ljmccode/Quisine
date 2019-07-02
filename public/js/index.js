@@ -81,6 +81,8 @@ var testRatingArr = [
 /////      UPPER CASE ARE TO DO ITEMS     /////
 ///////////////////////////////////////////////
 
+
+// NOT WORKING (FIRING ON MODAL STAR CLICK)
 // rating variable, changes on click with function
 var searchRating = 0;
 //search star rating value changer
@@ -89,7 +91,7 @@ function getSearchRatingValue() {
     searchRating = $(this).attr("value");
     console.log(searchRating);
 }
-
+ 
 
 
 //Materialise Functions
@@ -121,16 +123,15 @@ $(document).ready(function () {
 
 
 
-    // rating variable, changes on click with function
-    var rating = 0;
-
-
-    //star rating value changer
-    $(document).on("click", ".star_rating", getRatingValue);
-    function getRatingValue() {
-        rating = $(this).attr("value");
-        console.log(rating);
-    }
+    // // rating variable, changes on click with function
+    // var rating = 0;
+ 
+    // //star rating value changer
+    // $(document).on("click", ".search-rating", getRatingValue);
+    // function getRatingValue() {
+    //     rating = $(this).attr("value");
+    //     console.log(rating);
+    // }
 
     //Show results container
     $(document).on("click", ".search_name", isValidName);
@@ -188,120 +189,30 @@ $(document).ready(function () {
             scrollTop: position
         } /* speed */);
     }
-    function buildResults() {
-        //AJAX CALL
+    
 
-        // `name`, `status`, `link`, `type`
-        // var testArr = [
-        //     {
-        //         recipe_id: 1,
-        //         name: "spaghetti",
-        //         status: 0,
-        //         link: 'https://www.allrecipes.com/recipe/158140/spaghetti-sauce-with-ground-beef/',
-        //         type: 'dinner',
-        //         rating: 4,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 2,
-        //         name: "waffles",
-        //         status: 0,
-        //         link: 'https://www.allrecipes.com/recipe/22180/waffles-i/',
-        //         type: 'breakfast',
-        //         rating: 3,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 3,
-        //         name: "",
-        //         status: 0,
-        //         link: '',
-        //         type: '',
-        //         rating: 2,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 4,
-        //         name: "",
-        //         status: 0,
-        //         link: '',
-        //         type: '',
-        //         rating: ,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 5,
-        //         name: "",
-        //         status: 0,
-        //         link: '',
-        //         type: '',
-        //         rating: ,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 6,
-        //         name: "",
-        //         status: 0,
-        //         link: '',
-        //         type: '',
-        //         rating: ,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
-        //     {
-        //         recipe_id: 7,
-        //         name: "",
-        //         status: 0,
-        //         link: '',
-        //         type: '',
-        //         rating: ,
-        //         comments: "This is a comment",
-        //         favorite: 0
-        //     },
+    // //MATERIALISE LISTENERS
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('.sidenav');
+    //     //var instances = M.Sidenav.init(elems, options);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('.modal');
+    //     //var instances = M.Modal.init(elems, options);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('select');
+    //     //var instances = M.FormSelect.init(elems, options);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('.parallax');
+    //     //var instances = M.Parallax.init(elems, options);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('.scrollspy');
+    //     //var instances = M.ScrollSpy.init(elems, options);
+    // });
 
-        // ]
-    }
-    function makeCard(obj) {
-
-    }
-
-
-    //MATERIALISE LISTENERS
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.sidenav');
-        //var instances = M.Sidenav.init(elems, options);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.modal');
-        //var instances = M.Modal.init(elems, options);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        //var instances = M.FormSelect.init(elems, options);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.parallax');
-        //var instances = M.Parallax.init(elems, options);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.scrollspy');
-        //var instances = M.ScrollSpy.init(elems, options);
-    });
-
-
-    //MATERIALISE FUNTIONS
-    $(document).ready(function () {
-        $('.sidenav').sidenav();
-        $('.modal').modal();
-        $('select').formSelect();
-        $('.parallax').parallax();
-        $('.scrollspy').scrollSpy();
-    });
 
 
     //TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
@@ -340,4 +251,3 @@ $(document).ready(function () {
     }
     }
 }
-})

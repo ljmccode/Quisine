@@ -81,7 +81,7 @@ var testRatingArr = [
 /////      UPPER CASE ARE TO DO ITEMS     /////
 ///////////////////////////////////////////////
 
-
+// NOT WORKING (NOT TRIGGERING ON CLICK, SEARCH RATING IS)
 // Modal star rating value changer
 var modalRating = 0;
 $(document).on("click", ".modal-rating", updateRatingValue);
@@ -119,6 +119,17 @@ function updateFav() {
             $('.fav-icon').text('favorite');
         }
     }
+}
+
+// Delete icon on click
+$(document).on("click", ".bin-btn", deleteRecipe);
+function deleteRecipe() {
+    let recID = $(this).attr('recipe_id');
+    // If rating attr is not defined then INSERT row in ratings table
+    if ($('.bin-btn').attr('rating_id') === "undefined") {
+        // DELETE FROM RATINGS TABLE USING recID
+    }
+    // DELETE FROM RECIPE TABLE USING recID
 }
 
 // Shows the edit button when comment text area is clicked
@@ -174,9 +185,8 @@ function populateModal() {
     $('#textarea1').val("No comments");
     M.textareaAutoResize($('#textarea1'));
 
-    // ASSIGN IDs TO TRASH BUTTON
-    // IF RATING BIN THAT TOO?
-
+    // Add recID To trash button
+    $('.bin-btn').attr('recipe_id', recObj.recipe_id);
 
     // Build rating stars (default is unselected)
     buildRatingSelector();
@@ -184,6 +194,9 @@ function populateModal() {
     if (!(typeof ratObj === "undefined")) {
         // Add rating id to fav btn
         $('.fav-btn').attr('rating_id', ratObj.rating_id);
+
+        // Add rating id to bin btn
+        $('.bin-btn').attr('rating_id', ratObj.rating_id);
 
         if (ratObj.rating) {
             buildRatingStars(ratObj.rating)
@@ -223,7 +236,7 @@ function buildRatingSelector() {
             type: 'radio',
             id: ('star' + i),
             name: 'rating',
-            class: 'star_rating modal-rating ',
+            class: 'star_rating modal-rating',
             value: i
         }).appendTo(fieldset);
         $('<label>', {
