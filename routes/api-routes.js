@@ -1,10 +1,20 @@
 const recipes = require("../models/recipes");
 const rating = require("../models/ratings");
 
+var path = require("path");
+
 module.exports = function(app) {
+
+
   // API CALLS TO 'Recipes' TABLE
   app.get("/api/recipes", function(req, res) {
     recipes.getRecipes(req, res, function(data) {
+      res.json(data);
+    });
+  });
+
+  app.get("/api/recipe/:id", function(req, res) {
+    recipes.getOneRecipe(req, res, function(data) {
       res.json(data);
     });
   });
