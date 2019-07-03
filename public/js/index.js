@@ -123,17 +123,6 @@ $(document).ready(function () {
     $(".form-not-filled").hide();
 
 
-
-    // // rating variable, changes on click with function
-    // var rating = 0;
- 
-    // //star rating value changer
-    // $(document).on("click", ".search-rating", getRatingValue);
-    // function getRatingValue() {
-    //     rating = $(this).attr("value");
-    //     console.log(rating);
-    // }
-
     //Show results container
     $(document).on("click", ".search_name", isValidName);
     // check if user recipe name is valid
@@ -192,28 +181,6 @@ $(document).ready(function () {
         } /* speed */);
     }
     
-
-    // //MATERIALISE LISTENERS
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.sidenav');
-    //     //var instances = M.Sidenav.init(elems, options);
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.modal');
-    //     //var instances = M.Modal.init(elems, options);
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('select');
-    //     //var instances = M.FormSelect.init(elems, options);
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.parallax');
-    //     //var instances = M.Parallax.init(elems, options);
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.scrollspy');
-    //     //var instances = M.ScrollSpy.init(elems, options);
-    // });
 
 
 

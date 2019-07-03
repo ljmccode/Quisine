@@ -81,23 +81,7 @@ var testRatingArr = [
 /////      UPPER CASE ARE TO DO ITEMS     /////
 ///////////////////////////////////////////////
 
-// NOT WORKING (NOT TRIGGERING ON CLICK, SEARCH RATING IS)
-// Modal star rating value changer
-var modalRating = 0;
-$(document).on("click", ".modal-rating", updateRatingValue);
-function updateRatingValue() {
-    modalRating = $(this).attr("value");
-    console.log(modalRating);
 
-    // If rating attr is not defined then make row in ratings table
-    if ($('.fav-btn').attr('rating_id') === "undefined") {
-        let recID = $(this).attr('recipe_id');
-        // INSERT INTO RATINGS TABLE
-    } else {
-        let rateID = $(this).attr('rating_id');
-        // UPDATE RATINGS TABLE USING recID AND ratID
-    }
-}
 
 // Update fav icon on click
 $(document).on("click", ".fav-btn", updateFav);
@@ -190,6 +174,8 @@ function populateModal() {
 
     // Add recID To trash button
     $('.bin-btn').attr('recipe_id', recObj.recipe_id);
+    // Add recID to all stars
+    $('.modal-rating').attr('recipe_id', recObj.recipe_id);
 
     // Build rating stars (default is unselected)
     buildRatingSelector();
@@ -200,6 +186,9 @@ function populateModal() {
 
         // Add rating id to bin btn
         $('.bin-btn').attr('rating_id', ratObj.rating_id);
+
+        // Add rating id to all stars
+        $('.modal-rating').attr('rating_id', ratObj.rating_id);
 
         //if the rating row has a rating, fill them appropriately
         if (ratObj.rating) {
@@ -238,19 +227,35 @@ function buildRatingSelector() {
     let labelArr = ["Blegh", "Bad", "Okay", "Great", "Awesome"];
     let fieldset = $('<fieldset>', { class: 'rating' });
     for (let i = 5; i > 0; i--) {
-        $('<input />', {
+        let inp= $('<input />', {
             type: 'radio',
-            id: ('star' + i),
+            id: ('Mstar' + i),
             name: 'rating',
             class: 'star_rating modal-rating',
             value: i
         }).appendTo(fieldset);
         $('<label>', {
             class: 'full',
-            for: ('star' + i),
+            for: ('Mstar' + i),
             title: labelArr[i - 1]
         }).appendTo(fieldset)
     }
     $(fieldset).appendTo('.recipe-modal-header');
 }
 
+// Modal star rating value changer
+var modalRating = 0;
+
+$(document).on("click", ".modal-rating", updateRatingValue);
+function updateRatingValue() {
+    modalRating = $(this).attr("value");
+    console.log(modalRating);
+    // If rating attr is not defined then make row in ratings table
+    if ($(this).attr('rating_id') === "undefined") {
+        let recID = $(this).attr('recipe_id');
+        // INSERT INTO RATINGS TABLE
+    } else {
+        let rateID = $(this).attr('rating_id');
+        // UPDATE RATINGS TABLE USING recID AND ratID
+    }
+}
