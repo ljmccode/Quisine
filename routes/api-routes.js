@@ -55,4 +55,10 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  app.patch("/api/rating/:id", function(req, res) {
+    console.log(req);
+    rating.updateRating(req, res, function(data) {
+      res.json(data);
+    });
+  });
 };

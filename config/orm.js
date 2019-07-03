@@ -70,6 +70,15 @@ var orm = {
         });
     },
 
+    updateOne: function(query, callback) {
+      var queryString = "UPDATE ?? SET ? WHERE ?";
+      console.log(query);
+      connection.query(queryString, [query.table, query.data, query.equals], function(error, result) {
+          console.log(this.sql)
+        callback(error, result);
+      });
+  },
+
     delete: function (query, cb){
       //UPDATE ratings SET rating = 3, comments = 'meh', favorite = 1 WHERE rating_id = 1;;
       var queryString = "DELETE FROM ?? WHERE ?";
