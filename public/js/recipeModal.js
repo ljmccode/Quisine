@@ -145,24 +145,25 @@ function updateComment() {
 $(document).on("click", ".card-link", populateModal);
 function populateModal() {
     let recipeID = $(this).attr("id");
-
+    let recipeObj = {};
     $.ajax("/api/recipe/" + recipeID, {
         type: "GET"
-    }).then(function (data) {
-        console.log(data)
+    }).then(function (data1) {
+        recipeObj = data1;
         console.log("One recipe grabbed");
 
-        // //RATING TABLE CALL
-        // $.ajax("/api/rating/" + recipeID, {
-        //     type: "GET"
-        // }).then(function (data) {
-        //     console.log(data)
-        //     console.log("One recipe grabbed");
+        //RATING TABLE CALL
+        $.ajax("/api/rating/" + recipeID, {
+            type: "GET"
+        }).then(function (data2) {
+            console.log(recipeObj)
+            console.log("One recipe grabbed");
 
-        //     //RATING TABLE CALL
+            console.log(data2)
+            //RATING TABLE CALL
 
 
-        // });
+        });
 
     });
     // AJAX CALL FOR RATINGS

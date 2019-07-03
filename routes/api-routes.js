@@ -49,4 +49,10 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+
+  app.get("/api/rating/:id", function(req, res) {
+    rating.getOneRating(req, res, function(data) {
+      res.json(data);
+    });
+  });
 };
