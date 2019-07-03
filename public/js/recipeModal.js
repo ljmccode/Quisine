@@ -339,5 +339,5 @@ function deleteRecipe() {
     if ($('.bin-btn').attr('rating_id') === "undefined") {
         // DELETE FROM RATINGS TABLE USING recID
     }
-    // DELETE FROM RECIPE TABLE USING recID
+    // DELETE FROM RECIPE TABLE USING recID 
 }
