@@ -81,159 +81,92 @@ var testRatingArr = [
 /////      UPPER CASE ARE TO DO ITEMS     /////
 ///////////////////////////////////////////////
 
-
-
-// Update fav icon on click
-$(document).on("click", ".fav-btn", updateFav);
-function updateFav() {
-    let recID = $(this).attr('recipe_id');
-    // If rating attr is not defined then INSERT row in ratings table
-    if ($('.fav-btn').attr('rating_id') === "undefined") {
-        // Must be unfaved so change icon to fav
-        $('.fav-icon').text('favorite');
-        // INSERT INTO RATINGS TABLE USING recID
-    } else {
-        let rateID = $(this).attr('rating_id')
-        // Determine if 0 or 1 and change accordingly
-        if ($('.fav-icon').text() === 'favorite') {
-            // UPDATE RATINGS TABLE USING recID AND ratID
-            $('.fav-icon').text('favorite_border');
-        } else {
-            // UPDATE RATINGS TABLE USING recID AND ratID
-            $('.fav-icon').text('favorite');
-        }
-    }
-}
-
-// Delete icon on click
-$(document).on("click", ".bin-btn", deleteRecipe);
-function deleteRecipe() {
-    // NEED TO ADD CONFIRMATION!!
-
-
-    let recID = $(this).attr('recipe_id');
-    // If rating attr is not defined then INSERT row in ratings table
-    if ($('.bin-btn').attr('rating_id') === "undefined") {
-        // DELETE FROM RATINGS TABLE USING recID
-    }
-    // DELETE FROM RECIPE TABLE USING recID
-}
-
-// Shows the edit button when comment text area is clicked
-$(document).on("click", "#textarea1", showEditButton);
-function showEditButton() {
-    $('.edit-comment').removeClass("hide");
-}
-// Update comment on submit click IF NOT DONE THROUGH HTML LINK
-$(document).on("click", ".edit-comment", updateComment);
-function updateComment() {
-    event.preventDefault();
-    let recID = $(this).attr('recipe_id');
-    let comment = $('#textarea1').val();
-    console.log(comment)
-    // If rating attr is not defined then INSERT row in ratings table
-    if ($('.edit-comment').attr('rating_id') === "undefined") {
-        // INSERT INTO RATINGS TABLE USING recID
-    } else {
-        let rateID = $(this).attr('rating_id');
-        // UPDATE RATINGS TABLE USING recID AND ratID
-    }
-}
-
-
 // Populate Modal
 $(document).on("click", ".card-link", populateModal);
 function populateModal() {
     let recipeID = $(this).attr("id");
-    let recipeObj = {};
+    let recObj = {};
     $.ajax("/api/recipe/" + recipeID, {
         type: "GET"
     }).then(function (data1) {
-        recipeObj = data1;
-        console.log("One recipe grabbed");
+        recObj = data1[0];
 
         //RATING TABLE CALL
         $.ajax("/api/rating/" + recipeID, {
             type: "GET"
         }).then(function (data2) {
-            console.log(recipeObj)
-            console.log("One recipe grabbed");
+            console.log(recObj)
 
-            console.log(data2)
-            //RATING TABLE CALL
+            let ratObj = data2[0];
+            console.log(ratObj);
 
+            // Set recipe name
+            $(".modal-header").text(recObj.name);
+            // Set recipe link
+            $(".recipe-modal-link").attr("href", recObj.link);
+            // Add recipe id to fav button
+            $('.fav-btn').attr('recipe_id', recObj.recipe_id);
+            // Add recID To trash button
+            $('.bin-btn').attr('recipe_id', recObj.recipe_id);
+            // Add recID to all stars
+            $('.modal-rating').attr('recipe_id', recObj.recipe_id);
+            // Add recID to comment submit
+            $('.edit-comment').attr('recipe_id', recObj.recipe_id);
+
+            // Set fav icon to outline as default
+            $('.fav-icon').text('favorite_border');
+            // Set comment to "No Comments" as default;
+            $('#textarea1').val("No comments");
+            M.textareaAutoResize($('#textarea1'));
+
+            // Build rating stars (default is unselected)
+            buildRatingSelector();
+
+            if (ratObj) {
+                // Add rating id to fav btn
+                $('.fav-btn').attr('rating_id', ratObj.rating_id);
+
+                // Add rating id to bin btn
+                $('.bin-btn').attr('rating_id', ratObj.rating_id);
+
+                // Add rating id to bin btn
+                $('.edit-comment').attr('rating_id', ratObj.rating_id);
+
+                // Add rating id to all stars
+                $('.modal-rating').attr('rating_id', ratObj.rating_id);
+
+                //if the rating row has a rating, fill them appropriately
+                if (ratObj.rating) {
+                    fillRatingStars(ratObj.rating)
+                }
+
+                //if the rating row has a comment, fill it appropriately
+                if (ratObj.comments) {
+                    $('#textarea1').val(ratObj.comments);
+                    M.textareaAutoResize($('#textarea1'));
+                }
+
+                //if the rating row is a fav, fill it appropriately
+                if (ratObj.favorite == 1) {
+                    $('.fav-icon').text('favorite');
+                }
+
+                //add rating id to each star selector
+                $('.modal-rating').attr('rating_id', ratObj.rating_id);
+            }
+
+            //add recipe id to each star selector
+            $('.modal-rating').attr('recipe_id', recObj.recipe_id);
 
         });
-
     });
-    // AJAX CALL FOR RATINGS
-
-    // DELETE AFTER DB UPLINK
-    let recObj = testRecipeArr[recipeID - 1];
-    // Finds correlating ratings row, undefined if not found
-    let ratObj = testRatingArr.find(obj => {
-        return obj.fkrecipes == recipeID
-    });
-    console.log(recObj);
-    console.log(ratObj);
-
-    // Set recipe name
-    $(".modal-header").text(recObj.name);
-    // Set recipe link
-    $(".recipe-modal-link").attr("href", recObj.link);
-
-    // Add recipe id to fav button
-    $('.fav-btn').attr('recipe_id', recObj.recipe_id);
-
-    // Set fav icon to outline as default
-    $('.fav-icon').text('favorite_border');
-
-    // Set comment to "No Comments" as default;
-    $('#textarea1').val("No comments");
-    M.textareaAutoResize($('#textarea1'));
-
-    // Add recID To trash button
-    $('.bin-btn').attr('recipe_id', recObj.recipe_id);
-    // Add recID to all stars
-    $('.modal-rating').attr('recipe_id', recObj.recipe_id);
-
-    // Build rating stars (default is unselected)
-    buildRatingSelector();
-
-    if (!(typeof ratObj === "undefined")) {
-        // Add rating id to fav btn
-        $('.fav-btn').attr('rating_id', ratObj.rating_id);
-
-        // Add rating id to bin btn
-        $('.bin-btn').attr('rating_id', ratObj.rating_id);
-
-        // Add rating id to all stars
-        $('.modal-rating').attr('rating_id', ratObj.rating_id);
-
-        //if the rating row has a rating, fill them appropriately
-        if (ratObj.rating) {
-            fillRatingStars(ratObj.rating)
-        }
-
-        //if the rating row has a comment, fill it appropriately
-        if (ratObj.comments) {
-            $('#textarea1').val(ratObj.comments);
-            M.textareaAutoResize($('#textarea1'));
-        }
-
-        //if the rating row is a fav, fill it appropriately
-        if (ratObj.favorite == 1) {
-            $('.fav-icon').text('favorite');
-        }
-
-        //add rating id to each star selector
-        $('.modal-rating').attr('rating_id', ratObj.rating_id);
-    }
-
-    //add recipe id to each star selector
-    $('.modal-rating').attr('recipe_id', recObj.recipe_id);
 
 }
+
+
+
+
+
 function fillRatingStars(rating) {
     buildRatingSelector();
     // Change value of rating selector
@@ -263,19 +196,148 @@ function buildRatingSelector() {
     $(fieldset).appendTo('.recipe-modal-header');
 }
 
+
+
 // Modal star rating value changer
 var modalRating = 0;
 
 $(document).on("click", ".modal-rating", updateRatingValue);
 function updateRatingValue() {
+    let rateID = $(this).attr('rating_id');
+    let recID = $(this).attr('recipe_id');
+    console.log("RatingID: " + rateID);
     modalRating = $(this).attr("value");
+
     console.log(modalRating);
     // If rating attr is not defined then make row in ratings table
-    if ($(this).attr('rating_id') === "undefined") {
-        let recID = $(this).attr('recipe_id');
-        // INSERT INTO RATINGS TABLE
+    if (rateID == null) {
+
+        // Insert rating and rec ID into ratings table
+        let post = { rating: modalRating }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
+    } else {
+
+        // Update rating column in ratings table
+        let patch = { rating: modalRating }
+        $.ajax("/api/rating/" + rateID, {
+            type: "PATCH",
+            data: JSON.stringify(patch),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
+    }
+}
+
+
+// Update fav icon on click
+$(document).on("click", ".fav-btn", updateFav);
+function updateFav() {
+    let rateID = $(this).attr('rating_id');
+    let recID = $(this).attr('recipe_id');
+    // If rating attr is not defined then INSERT row in ratings table
+    if (rateID == null) {
+        // Must be unfaved so change icon to fav
+        $('.fav-icon').text('favorite');
+        // Insert favorite and rec ID into ratings table
+        let post = { favorite: 1 }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
+    } else {
+        let rateID = $(this).attr('rating_id')
+        let favVal = 0;
+        // Determine if 0 or 1 and change accordingly
+        if ($('.fav-icon').text() === 'favorite') {
+            $('.fav-icon').text('favorite_border');
+        } else {
+            $('.fav-icon').text('favorite');
+            favVal = 1;
+        }
+
+        // Updates favorite column in ratings table
+        let patch = { favorite: favVal }
+        $.ajax("/api/rating/" + rateID, {
+            type: "PATCH",
+            data: JSON.stringify(patch),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            console.log(data)
+        });
+    }
+}
+
+
+// Shows the edit button when comment text area is clicked
+$(document).on("click", "#textarea1", showEditButton);
+function showEditButton() {
+    $('.edit-comment').removeClass("hide");
+}
+// Update comment on submit click IF NOT DONE THROUGH HTML LINK
+$(document).on("click", ".edit-comment", updateComment);
+function updateComment() {
+    event.preventDefault();
+    let rateID = $(this).attr('rating_id');
+    let recID = $(this).attr('recipe_id');
+    let comment = $('#textarea1').val();
+    console.log(comment)
+    // If rating attr is not defined then INSERT row in ratings table
+    if (rateID == null) {
+        // Insert comment and rec ID into ratings table
+        let post = { comments: comment }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     } else {
         let rateID = $(this).attr('rating_id');
-        // UPDATE RATINGS TABLE USING recID AND ratID
+        // Updates favorite column in ratings table
+        let patch = { comments: comment }
+        $.ajax("/api/rating/" + rateID, {
+            type: "PATCH",
+            data: JSON.stringify(patch),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            console.log(data)
+        });
     }
+}
+
+// Delete icon on click
+$(document).on("click", ".bin-btn", deleteRecipe);
+function deleteRecipe() {
+    // NEED TO ADD CONFIRMATION!!
+
+
+    let recID = $(this).attr('recipe_id');
+    // If rating attr is not defined then INSERT row in ratings table
+    if ($('.bin-btn').attr('rating_id') === "undefined") {
+        // DELETE FROM RATINGS TABLE USING recID
+    }
+    // DELETE FROM RECIPE TABLE USING recID 
 }
