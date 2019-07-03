@@ -5,10 +5,10 @@ $(function () {
         event.preventDefault();
 
         var newRecipe = {
-            name: $("#recipe_name").val().trim(),
+            name: $(".recipe_name").val().trim(),
             status: 1,
-            link: $("#recipe_link").val().trim(),
-            type: $("#types").find(":selected").text()
+            link: $(".recipe_link").val().trim(),
+            type: $(".types").find(":selected").text()
         };
 
         // posts recipe to database with new recipe status true

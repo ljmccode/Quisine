@@ -145,7 +145,26 @@ function updateComment() {
 $(document).on("click", ".card-link", populateModal);
 function populateModal() {
     let recipeID = $(this).attr("id");
-    // AJAX CALL FOR RECIPE ID
+
+    $.ajax("/api/recipe/" + recipeID, {
+        type: "GET"
+    }).then(function (data) {
+        console.log(data)
+        console.log("One recipe grabbed");
+
+        // //RATING TABLE CALL
+        // $.ajax("/api/rating/" + recipeID, {
+        //     type: "GET"
+        // }).then(function (data) {
+        //     console.log(data)
+        //     console.log("One recipe grabbed");
+
+        //     //RATING TABLE CALL
+
+
+        // });
+
+    });
     // AJAX CALL FOR RATINGS
 
     // DELETE AFTER DB UPLINK
@@ -200,7 +219,7 @@ function populateModal() {
             $('#textarea1').val(ratObj.comments);
             M.textareaAutoResize($('#textarea1'));
         }
-        
+
         //if the rating row is a fav, fill it appropriately
         if (ratObj.favorite == 1) {
             $('.fav-icon').text('favorite');
@@ -227,7 +246,7 @@ function buildRatingSelector() {
     let labelArr = ["Blegh", "Bad", "Okay", "Great", "Awesome"];
     let fieldset = $('<fieldset>', { class: 'rating' });
     for (let i = 5; i > 0; i--) {
-        let inp= $('<input />', {
+        let inp = $('<input />', {
             type: 'radio',
             id: ('Mstar' + i),
             name: 'rating',

@@ -11,6 +11,18 @@ let recipes = {
       }
     );
   },
+  getOneRecipe: function(req, res) {
+    orm.selectOne(
+      {
+        table: "recipes",
+        label: "recipe_id",
+        value: req.params.id,
+      },
+      function(data) {
+        res.json(data);
+      }
+    );
+  },
   addRecipe: function(req, res) {
     orm.create(
       {

@@ -11,6 +11,18 @@ var orm = {
         });
     },
 
+    selectOne: function (query, cb) {
+      var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+      connection.query(queryString, [query.table, query.label, query.value], function (err, result) {
+          if (err) {
+            console.log(query)
+              throw err;
+          }
+          cb(result);
+          console.log(result);
+      });
+  },
+
     join: function (query, cb) {
         //SELECT * FROM recipes INNER JOIN ratings ON ratings.rating_id = recipes.recipe_id;
         var queryString = "SELECT * FROM ?? INNER JOIN ?? ON ??";
