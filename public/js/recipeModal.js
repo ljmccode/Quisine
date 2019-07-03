@@ -334,10 +334,30 @@ function deleteRecipe() {
     // NEED TO ADD CONFIRMATION!!
 
 
+    let rateID = $(this).attr('rating_id');
     let recID = $(this).attr('recipe_id');
+
     // If rating attr is not defined then INSERT row in ratings table
-    if ($('.bin-btn').attr('rating_id') === "undefined") {
-        // DELETE FROM RATINGS TABLE USING recID
+    if (rateID != null) {
+        // Delete from ratings table using recID
+        $.ajax("/api/rating/" + rateID, {
+            type: "DELETE"
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     }
-    // DELETE FROM RECIPE TABLE USING recID 
+    // Delete from recipe table using recID 
+    $.ajax("/api/recipe/" + recID, {
+        type: "DELETE"
+    }).then(function (data) {
+        // populateModal();
+        // console.log(data)
+
+        $('#modal1').modal('close')
+        // Removes card from card list
+        var elem = document.querySelector('a[card_recipe_id="' + recID + '"]');
+        elem.parentNode.removeChild(elem);
+    });
+
 }

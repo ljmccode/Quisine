@@ -56,6 +56,21 @@ var ratings = {
         res.json(data);
       }
     );
+  },
+  deleteRating: function(req, res) {
+    orm.delete(
+      {
+        table: "ratings",
+        where: [
+          {
+            "rating_id": req.params.id
+          }
+        ]
+      },
+      function(data) {
+        res.json(data);
+      }
+    );
   }
 };
 

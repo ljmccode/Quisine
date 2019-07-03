@@ -21,6 +21,7 @@ function showResults() {
 }
 // Builds Results container and gets DB info
 function buildResults() {
+    $('#results-cards').empty();
     $.ajax("/api/recipes", {
         type: "GET"
     }).then(function(data) {
@@ -40,7 +41,7 @@ function makeCard(obj) {
     $('<img>', { src: 'images/sample-1.jpg' }).appendTo(cardIMG);
     var content = $('<div>', { class: 'card-content' }).appendTo(card);
     $('<span>', { class: 'card-title' }).text(obj.name).appendTo(content);
-
+    a.attr('card_recipe_id', obj.recipe_id)
 
     return a;
 }

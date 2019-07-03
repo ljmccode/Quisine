@@ -66,4 +66,9 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  app.delete("/api/rating/:id", function(req, res) {
+    rating.deleteRating(req, res, function(data) {
+      res.json(data);
+    });
+  });
 };

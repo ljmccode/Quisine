@@ -16,7 +16,7 @@ CREATE TABLE `ratings` (
   `rating` int(11) DEFAULT NULL,
   `comments` varchar(75) DEFAULT NULL,
   `favorite` tinyint(4) DEFAULT NULL,
-  `recipe_id` INT(11) NOT NULL,
+  `recipe_id` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`rating_id`),
 CONSTRAINT recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
