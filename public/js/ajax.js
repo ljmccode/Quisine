@@ -31,7 +31,7 @@ $(function () {
         };
 
         // updates recipe in database to status not new once rating button is clicked
-        $.ajax("/api/recipes/" + id, {
+        $.ajax("/api/recipe/" + id, {
             type: "PUT",
             data: newRecipe
         }).then(function () {
@@ -48,7 +48,7 @@ $(function () {
         // deletes recipe from database upon clicking trash button
         $.ajax({
           type: "DELETE",
-          url: "/api/recipes/" + id
+          url: "/api/recipe/" + id
         }).then(function() {
             console.log("trashed recipe", id);
             // Reload the page to get the updated list

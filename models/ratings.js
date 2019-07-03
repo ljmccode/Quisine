@@ -6,15 +6,11 @@ var ratings = {
       {
         tableOne: "recipes",
         tableTwo: "ratings",
-        on: [
-          {
-            "ratings.ratings_id": req.params.id
-          }
-        ]
+        on: [{ "ratings.rating_id": req.body.recipe_id }]
       },
       function(result) {
-        // res.json(result);
-        console.log(result.sql);
+        res.json(result);
+        console.log(result);
       }
     );
   },
@@ -23,10 +19,10 @@ var ratings = {
       {
         table: "ratings",
         values: {
-          "rating_id": req.params.id,
-          "rating": req.body.rating,
-          "comments": req.body.comments,
-          "favorite": req.body.favorite
+          rating_id: req.params.id,
+          rating: req.body.rating,
+          comments: req.body.comments,
+          favorite: req.body.favorite
         }
       },
       function(data) {
@@ -35,6 +31,5 @@ var ratings = {
     );
   }
 };
-ratings.joinRated();
 
 module.exports = ratings;

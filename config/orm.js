@@ -16,9 +16,10 @@ var orm = {
         var queryString = "SELECT * FROM ?? INNER JOIN ?? ON ??";
         connection.query(
             queryString,
-            [query.tableOne, query.tableTwo, query.on[0]],
+            [query.tableOne, query.tableTwo, query.on],
              function (err, result) {
             if (err) {
+              console.log(err.sql);
                 throw err;
             }
             cb(result);
@@ -41,8 +42,6 @@ var orm = {
                 console.log(result);
             });
     },
-<<<<<<< HEAD
-=======
 
     update: function (query, cb){
       //UPDATE ratings SET rating = 3, comments = 'meh', favorite = 1 WHERE rating_id = 1;;
@@ -75,7 +74,6 @@ var orm = {
           console.log(result);
         });
     }
->>>>>>> f6b539067675f983e2f5f736bfd835b307c7aab7
 }
 
 // orm.selectRated("recipes", "ratings", "rating_id", function(){});

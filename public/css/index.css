@@ -27,11 +27,11 @@ html {
     height: 100%;
     padding: 1rem
 }
-.portals{
-    /* display: flex;
-    flex-direction: column; */
-    /* justify-content: center; */
-}
+/* .portals{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
 .parallax-container {
     height: 300px;
   }
