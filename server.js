@@ -14,13 +14,7 @@ app.use(express.json());
 app.listen(port);
 
 require("./routes/api-routes")(app);
-<<<<<<< HEAD
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-  });
-=======
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
->>>>>>> ef5aba52e4be1a48ac38576d3699965fcdac984c
