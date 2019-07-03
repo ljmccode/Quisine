@@ -23,16 +23,20 @@ function getSearchRatingValue() {
 $(document).ready(function () {
     //Materialise custom options
     // Closes comment box at event
-    var closeComment = function () {
+    var closeModalFunction = function () {
+        //closes comment box
         var elem = document.querySelector('.collapsible');
         var instance = M.Collapsible.getInstance(elem);
         instance.close(0);
+
+        //removes rating id from buttons
+        $('.modal *').removeAttr("rating_id");
     };
 
     // Materialise create instances and link options
     $('.sidenav').sidenav();
     $('.modal').modal({
-        onCloseEnd: closeComment,
+        onCloseEnd: closeModalFunction,
         opacity: 0.5
     })
     $('select').formSelect();
