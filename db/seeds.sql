@@ -16,3 +16,16 @@ VALUES
     ("Cheesecake Factory Cheesecake", 0, "https://www.myrecipes.com/recipe/cheesecake-factory-original-cheesecake", "dessert"),
     ("Margherita Pizza", 0, "https://www.abeautifulplate.com/the-best-homemade-margherita-pizza/", "dinner");
 
+INSERT INTO `ratings`
+	(`rating`, `comments`, `favorite`, `recipe_id`)
+    
+    VALUES
+    (3, "This is a comment",0, 1),
+     (0, "This is a second comment",1, 2),
+      (5, "This is a third comment",1, 5);
+    
+          INSERT INTO `ratings`
+	(`favorite`, `recipe_id`)
+    
+    VALUES
+    (1, 6)
