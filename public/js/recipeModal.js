@@ -110,6 +110,8 @@ function populateModal() {
             $('.bin-btn').attr('recipe_id', recObj.recipe_id);
             // Add recID to all stars
             $('.modal-rating').attr('recipe_id', recObj.recipe_id);
+            // Add recID to comment submit
+            $('.edit-comment').attr('recipe_id', recObj.recipe_id);
 
             // Set fav icon to outline as default
             $('.fav-icon').text('favorite_border');
@@ -201,14 +203,28 @@ var modalRating = 0;
 
 $(document).on("click", ".modal-rating", updateRatingValue);
 function updateRatingValue() {
+    let rateID = $(this).attr('rating_id');
+    let recID = $(this).attr('recipe_id');
+    console.log("RatingID: " + rateID);
     modalRating = $(this).attr("value");
+
     console.log(modalRating);
     // If rating attr is not defined then make row in ratings table
-    if ($(this).attr('rating_id') === "undefined") {
-        let recID = $(this).attr('recipe_id');
-        // INSERT INTO RATINGS TABLE
+    if (rateID == null) {
+
+        // Insert rating and rec ID into ratings table
+        let post = { rating: modalRating }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     } else {
-        let rateID = $(this).attr('rating_id');
+
         // Update rating column in ratings table
         let patch = { rating: modalRating }
         $.ajax("/api/rating/" + rateID, {
@@ -218,7 +234,7 @@ function updateRatingValue() {
             contentType: 'application/json; charset=utf-8'
         }).then(function (data) {
             // populateModal();
-            console.log(data)
+            // console.log(data)
         });
     }
 }
@@ -227,12 +243,23 @@ function updateRatingValue() {
 // Update fav icon on click
 $(document).on("click", ".fav-btn", updateFav);
 function updateFav() {
+    let rateID = $(this).attr('rating_id');
     let recID = $(this).attr('recipe_id');
     // If rating attr is not defined then INSERT row in ratings table
-    if ($('.fav-btn').attr('rating_id') === "undefined") {
+    if (rateID == null) {
         // Must be unfaved so change icon to fav
         $('.fav-icon').text('favorite');
-        // INSERT INTO RATINGS TABLE USING recID
+        // Insert favorite and rec ID into ratings table
+        let post = { favorite: 1 }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     } else {
         let rateID = $(this).attr('rating_id')
         let favVal = 0;
@@ -258,19 +285,6 @@ function updateFav() {
     }
 }
 
-// Delete icon on click
-$(document).on("click", ".bin-btn", deleteRecipe);
-function deleteRecipe() {
-    // NEED TO ADD CONFIRMATION!!
-
-
-    let recID = $(this).attr('recipe_id');
-    // If rating attr is not defined then INSERT row in ratings table
-    if ($('.bin-btn').attr('rating_id') === "undefined") {
-        // DELETE FROM RATINGS TABLE USING recID
-    }
-    // DELETE FROM RECIPE TABLE USING recID
-}
 
 // Shows the edit button when comment text area is clicked
 $(document).on("click", "#textarea1", showEditButton);
@@ -281,12 +295,23 @@ function showEditButton() {
 $(document).on("click", ".edit-comment", updateComment);
 function updateComment() {
     event.preventDefault();
+    let rateID = $(this).attr('rating_id');
     let recID = $(this).attr('recipe_id');
     let comment = $('#textarea1').val();
     console.log(comment)
     // If rating attr is not defined then INSERT row in ratings table
-    if ($('.edit-comment').attr('rating_id') === "undefined") {
-        // INSERT INTO RATINGS TABLE USING recID
+    if (rateID == null) {
+        // Insert comment and rec ID into ratings table
+        let post = { comments: comment }
+        $.ajax("/api/rating/" + recID, {
+            type: "POST",
+            data: JSON.stringify(post),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8'
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     } else {
         let rateID = $(this).attr('rating_id');
         // Updates favorite column in ratings table
@@ -301,4 +326,18 @@ function updateComment() {
             console.log(data)
         });
     }
+}
+
+// Delete icon on click
+$(document).on("click", ".bin-btn", deleteRecipe);
+function deleteRecipe() {
+    // NEED TO ADD CONFIRMATION!!
+
+
+    let recID = $(this).attr('recipe_id');
+    // If rating attr is not defined then INSERT row in ratings table
+    if ($('.bin-btn').attr('rating_id') === "undefined") {
+        // DELETE FROM RATINGS TABLE USING recID
+    }
+    // DELETE FROM RECIPE TABLE USING recID
 }

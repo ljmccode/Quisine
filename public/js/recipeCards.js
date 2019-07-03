@@ -29,7 +29,7 @@ function buildResults() {
         for (var i in data){
             $(makeCard(data[i])).appendTo("#results-cards")
         }
-    });
+    }); 
 }
 // Makes a single card with the given object
 function makeCard(obj) {

@@ -43,6 +43,11 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  app.post("/api/rating/:id", function(req, res) {
+    rating.rateRecipe(req, res, function(data) {
+      res.json(data);
+    });
+  });
 
   app.put("/api/recipe/:id", function(req, res) {
     rating.joinRecipe(req, res, function(data) {
@@ -56,7 +61,7 @@ module.exports = function(app) {
     });
   });
   app.patch("/api/rating/:id", function(req, res) {
-    console.log(req);
+    //console.log(req);
     rating.updateRating(req, res, function(data) {
       res.json(data);
     });

@@ -34,7 +34,7 @@ var ratings = {
       {
         table: "ratings",
         values: {
-          "rating_id": req.params.id,
+          "recipe_id": req.params.id,
           "rating": req.body.rating,
           "comments": req.body.comments,
           "favorite": req.body.favorite
