@@ -1,79 +1,3 @@
-var testRecipeArr = [
-    {
-        recipe_id: 1,
-        name: "spaghetti",
-        status: 0,
-        link: 'https://www.allrecipes.com/recipe/158140/spaghetti-sauce-with-ground-beef/',
-        type: 'dinner'
-    },
-    {
-        recipe_id: 2,
-        name: "waffles",
-        status: 0,
-        link: 'https://www.allrecipes.com/recipe/22180/waffles-i/',
-        type: 'breakfast'
-    },
-    {
-        recipe_id: 3,
-        name: "ramen",
-        status: 0,
-        link: 'https://www.foxandbriar.com/easy-chicken-ramen/',
-        type: 'lunch'
-    },
-    {
-        recipe_id: 4,
-        name: "Chicken noodle Soup",
-        status: 0,
-        link: 'https://www.tasteofhome.com/recipes/the-ultimate-chicken-noodle-soup/',
-        type: 'lunch'
-    },
-    {
-        recipe_id: 5,
-        name: "brownies",
-        status: 0,
-        link: 'https://thestayathomechef.com/brownie-recipe/',
-        type: 'dessert'
-    },
-    {
-        recipe_id: 6,
-        name: "Omelette",
-        status: 0,
-        link: 'https://www.incredibleegg.org/recipe/basic-french-omelet/',
-        type: 'breakfast'
-    },
-    {
-        recipe_id: 7,
-        name: "chocolate cake",
-        status: 0,
-        link: 'https://thestayathomechef.com/the-most-amazing-chocolate-cake/',
-        type: 'dessert'
-    }
-]
-
-var testRatingArr = [
-    {
-        rating_id: 1,
-        rating: 4,
-        comments: "This is a comment",
-        favorite: 0,
-        fkrecipes: 2 //waffles
-    },
-    {
-        rating_id: 2,
-        rating: null,
-        comments: "This is a comment, I wrote this because I had a specific thought about this recipe and wanted to jot it down for future reference",
-        favorite: 0,
-        fkrecipes: 6 //Omelette
-    },
-    {
-        rating_id: 3,
-        rating: 3,
-        comments: null,
-        favorite: 1,
-        fkrecipes: 1 //spaghetti
-    },
-]
-// DELETE ABOVE ON DB UPLINK
 
 ///////////////////////////////////////////////
 /////   Lower case are regular comments   /////
@@ -84,6 +8,15 @@ var testRatingArr = [
 // Populate Modal
 $(document).on("click", ".card-link", populateModal);
 function populateModal() {
+    
+    let url = $( this ).attr('url_link');
+    console.log(url);
+    // $('.modal-image-tag').attr('src', url);
+    // <img class="materialboxed center modal-image-tag" width="auto" src="images/sample-1.jpg"></img>
+    $('.img-container').empty();
+    $('<img>', {class: 'materialboxed center', width: '100%', src: url}).appendTo('.img-container');
+    $('.materialboxed').materialbox();
+
     let recipeID = $(this).attr("id");
     let recObj = {};
     $.ajax("/api/recipe/" + recipeID, {
@@ -334,10 +267,30 @@ function deleteRecipe() {
     // NEED TO ADD CONFIRMATION!!
 
 
+    let rateID = $(this).attr('rating_id');
     let recID = $(this).attr('recipe_id');
+
     // If rating attr is not defined then INSERT row in ratings table
-    if ($('.bin-btn').attr('rating_id') === "undefined") {
-        // DELETE FROM RATINGS TABLE USING recID
+    if (rateID != null) {
+        // Delete from ratings table using recID
+        $.ajax("/api/rating/" + rateID, {
+            type: "DELETE"
+        }).then(function (data) {
+            // populateModal();
+            // console.log(data)
+        });
     }
-    // DELETE FROM RECIPE TABLE USING recID 
+    // Delete from recipe table using recID 
+    $.ajax("/api/recipe/" + recID, {
+        type: "DELETE"
+    }).then(function (data) {
+        // populateModal();
+        // console.log(data)
+
+        $('#modal1').modal('close')
+        // Removes card from card list
+        var elem = document.querySelector('a[card_recipe_id="' + recID + '"]');
+        elem.parentNode.removeChild(elem);
+    });
+
 }
