@@ -103,47 +103,7 @@
 
         </div>
 
-        <!-- MODALS
-        <div class="row container portals center-align">
-
-            <div class="col m4">
-                <div class="card small all-recipes ">
-                    <div class="card-image waves-effect waves-block waves-light all-recipes">
-                        <img class="activator" src="images/all.png">
-                    </div>
-                    <div class="card-content all-recipes">
-                        <span class="card-title activator grey-text text-darken-4 all-recipes">All Recipes</span>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col m4">
-                <div class="card small all-recipes ">
-                    <div class="card-image waves-effect waves-block waves-light modal-trigger" href="#modal1">
-                        <img class="activator" src="images/search.png">
-                    </div>
-                    <div class="card-content modal-trigger" href="#modal1">
-                        <span class="card-title activator grey-text text-darken-4 modal-trigger" href="#modal1">Search
-                            Recipes</span>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col m4">
-                <div class="card small all-recipes ">
-                    <div class="card-image waves-effect waves-block waves-light modal-trigger" href="#modal2">
-                        <img class="activator" src="images/all.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Add Recipe</span>
-
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
+        
     </div>
 
     <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -263,7 +223,7 @@
                 <div class="added_recipe center">Recipe Added!</div>
 
             </form>
-            <a href="#home" class="add_recipe waves-effect waves-green btn-flat right">SUBMIT</a>
+            <button class="add_recipe waves-effect waves-green btn-flat right">SUBMIT</button>
         </div>
     </div>
 
@@ -298,8 +258,8 @@
 
         <div class="divider"></div>
 
-        <div class="modal-content">
-            <img class="materialboxed center" width="auto" src="images/sample-1.jpg">
+        <div class="modal-content img-container">
+            <!-- <img class="materialboxed center modal-image-tag" width="auto" src="images/sample-1.jpg"> -->
         </div>
 
         <div class="divider"></div>
@@ -330,108 +290,6 @@
         </div>
     </div>
 
-    <!-- SEARCH MODAL -->
-    <!-- <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>SEARCH RECIPES</h4>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">book</i>
-                            <input id="icon_prefix" type="text" class="validate search_by_name">
-                            <label for="icon_prefix">Recipe Name</label>
-                        </div>
-                </form>
-                <a href="#!" class="search_name modal-close waves-effect waves-green btn-flat right">SUBMIT</a>
-            </div>
-
-            <div class="divider"></div>
-            <br>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">fastfood</i>
-                    <select class="search_by_type">
-                        <option value="" disabled selected>Choose type of meal</option>
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                        <option value="dessert">Dessert</option>
-                    </select>
-                    <label>Type of Meal</label>
-                </div>
-            </div>
-            <label>Rating</label>
-            <div class="row">
-                <div class="col s4">
-
-                    <fieldset class="rating">
-                        <input type="radio" id="star5" name="rating" class="star_rating" value="5" /><label class="full"
-                            for="star5" title="Awesome"></label>
-
-                        <input type="radio" id="star4" name="rating" class="star_rating" value="4" /><label class="full"
-                            for="star4" title="Great"></label>
-
-                        <input type="radio" id="star3" name="rating" class="star_rating" value="3" /><label class="full"
-                            for="star3" title="Okay"></label>
-
-                        <input type="radio" id="star2" name="rating" class="star_rating" value="2" /><label class="full"
-                            for="star2" title="Bad"></label>
-
-                        <input type="radio" id="star1" name="rating" class="star_rating" value="1" /><label class="full"
-                            for="star1" title="Blegh"></label>
-
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="search_other modal-close waves-effect waves-green btn-flat">SUBMIT</a>
-        </div>
-    </div>
--->
-    <!-- ADD MODAL -->
-    <!-- <div id="modal2" class="modal">
-        <div class="modal-content">
-            <h4>ADD RECIPE</h4>
-            <form class="col s12">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">book</i>
-                        <input id="input_text" type="text" class="validate recipe_name">
-                        <label for="input_text">Recipe Name</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">fastfood</i>
-                        <select class="type">
-                            <option value="" disabled selected>Choose type of meal</option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="lunch">Lunch</option>
-                            <option value="dinner">Dinner</option>
-                            <option value="dessert">Dessert</option>
-                        </select>
-                        <label>Type of Meal</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">link</i>
-                        <input id="input_text2" type="text" class="validate recipe_link">
-                        <label for="input_text2">Recipe Link</label>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="add_recipe modal-close waves-effect waves-green btn-flat">SUBMIT</a>
-        </div>
-    </div> -->
 
 
     <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
