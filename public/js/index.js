@@ -120,13 +120,9 @@ function isRatingSelected() {
         }
 
 
-
-
-        //TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
-
         //adding recipe
-        $(document).on("click", ".add_recipe", getValues);
-        function getValues() {
+        $(document).on("click", ".add_recipe", addRecipe);
+        function addRecipe() {
             event.preventDefault();
             var name = $('.recipe_name').val();
             console.log(name);
@@ -136,7 +132,39 @@ function isRatingSelected() {
 
             var link = $('.recipe_link').val();
             console.log(link);
+
+            let post = {
+                name: name,
+                status: 0,
+                link: link,
+                type: type
+            }
+            $.ajax("/api/recipe", {
+                type: "POST",
+                data: JSON.stringify(post),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8'
+            }).then(function (data) {
+                // populateModal();
+                // console.log(data)
+            });
         }
+
+        //TESTING FUNCTIONS [[[[[[[[DELETE LATER]]]]]]]]
+
+        // //adding recipe
+        // $(document).on("click", ".add_recipe", getValues);
+        // function getValues() {
+        //     event.preventDefault();
+        //     var name = $('.recipe_name').val();
+        //     console.log(name);
+
+        //     var type = $('.type').val();
+        //     console.log(type);
+
+        //     var link = $('.recipe_link').val();
+        //     console.log(link);
+        // }
 
         //search recipe name
         $(document).on("click", ".search_name", getNameValues);
