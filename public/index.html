@@ -60,7 +60,7 @@
 
 
             <div class="col m4">
-                <a href="#results-parallax" class="activate-results">
+                <a href="#results-parallax" class="activate-results all_recipes">
                     <div class="card small all-recipes hoverable">
                         <div class="card-image waves-effect waves-block waves-light" href="#results">
                             <img class="activator" src="images/all.png">
@@ -448,3 +448,30 @@
 </body>
 
 </html>
+<script>
+$(document).on("click", ".add_recipe", newRecipe);
+    event.preventDefault();
+
+    // Here we grab the form elements
+    var newRecipe = {
+        name: $(".recipe_name").val().trim(),
+        status: 1,
+        link: $(".recipe_link").val().trim(),
+        type: $(".types").find(":selected").text()
+    };
+
+    console.log(newRecipe);
+
+    $.ajax("/api/recipes", {
+            type: "POST",
+            data: newRecipe
+        }).then(function() {
+            console.log("Recipe added");
+        });
+
+        // Clear the form when submitting
+        $(".recipe_name").val("");
+        $(".recipe_link").val("");
+        $(".types").val("");
+
+</script>
