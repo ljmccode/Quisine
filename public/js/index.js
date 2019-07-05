@@ -50,6 +50,7 @@ $(document).ready(function () {
 
     $(".name-not-valid").hide();
     $(".form-not-filled").hide();
+    $(".added_recipe").hide();
 
 
     //Show results container

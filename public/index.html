@@ -260,6 +260,7 @@
                         <label for="input_text2">Recipe Link</label>
                     </div>
                 </div>
+                <div class="added_recipe center">Recipe Added!</div>
 
             </form>
             <a href="#home" class="add_recipe waves-effect waves-green btn-flat right">SUBMIT</a>
@@ -449,7 +450,7 @@
 
 </html>
 <script>
-$(document).on("click", ".add_recipe", newRecipe);
+$(".add_recipe").on("click", function(event) {
     event.preventDefault();
 
     // Here we grab the form elements
@@ -457,21 +458,20 @@ $(document).on("click", ".add_recipe", newRecipe);
         name: $(".recipe_name").val().trim(),
         status: 1,
         link: $(".recipe_link").val().trim(),
-        type: $(".types").find(":selected").text()
+        type: $(".type").find(":selected").text()
     };
 
     console.log(newRecipe);
 
-    $.ajax("/api/recipes", {
-            type: "POST",
-            data: newRecipe
-        }).then(function() {
+    $.post("/api/recipes", newRecipe,
+        function(data) {
             console.log("Recipe added");
+            $(".added_recipe").show();
         });
 
         // Clear the form when submitting
         $(".recipe_name").val("");
         $(".recipe_link").val("");
-        $(".types").val("");
-
+        $(".type").val("");
+    })
 </script>
