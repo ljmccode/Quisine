@@ -8,7 +8,7 @@
 
 
 //Show results container
-$(document).on("click", ".activate-results", showResults);
+$(document).on("click", ".all_recipes", showResults);
 function showResults() {
     $('#results').removeClass("hide");
 

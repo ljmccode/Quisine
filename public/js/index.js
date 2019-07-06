@@ -57,9 +57,9 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
 });
 
-$(".name-not-valid").hide();
-$(".form-not-filled").hide();
-
+    $(".name-not-valid").hide();
+    $(".form-not-filled").hide();
+    $(".added_recipe").hide();
 
 //Show results container
 $(document).on("click", ".search_name", isValidName);

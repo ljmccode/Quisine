@@ -60,7 +60,7 @@
 
 
             <div class="col m4">
-                <a href="#results-parallax" class="activate-results">
+                <a href="#results-parallax" class="activate-results all_recipes">
                     <div class="card small all-recipes hoverable">
                         <div class="card-image waves-effect waves-block waves-light" href="#results">
                             <img class="activator" src="images/all.png">
@@ -220,6 +220,7 @@
                         <label for="input_text2">Recipe Link</label>
                     </div>
                 </div>
+                <div class="added_recipe center">Recipe Added!</div>
 
             </form>
             <button class="add_recipe waves-effect waves-green btn-flat right">SUBMIT</button>
@@ -306,3 +307,29 @@
 </body>
 
 </html>
+<script>
+$(".add_recipe").on("click", function(event) {
+    event.preventDefault();
+
+    // Here we grab the form elements
+    var newRecipe = {
+        name: $(".recipe_name").val().trim(),
+        status: 1,
+        link: $(".recipe_link").val().trim(),
+        type: $(".type").find(":selected").text()
+    };
+
+    console.log(newRecipe);
+
+    $.post("/api/recipes", newRecipe,
+        function(data) {
+            console.log("Recipe added");
+            $(".added_recipe").show();
+        });
+
+        // Clear the form when submitting
+        $(".recipe_name").val("");
+        $(".recipe_link").val("");
+        $(".type").val("");
+    })
+</script>
