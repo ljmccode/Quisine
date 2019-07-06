@@ -84,7 +84,7 @@ function isRatingSelected() {
     var radios = document.getElementsByName("rating");
     var ratingSelected = false;
     var typeSelected = false;
-
+    var type = "";
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
             ratingSelected = true;
@@ -99,6 +99,7 @@ function isRatingSelected() {
             if (!select.value == "") {
                 console.log("yup");
                 typeSelected = true;
+                type = $('.type').val();
             } else {
                 // if neither rating or type is selected, error shows
                 $(".form-not-filled").show();
@@ -106,17 +107,36 @@ function isRatingSelected() {
             }
         }
     }
-    console.log('ratingSelected: '+ ratingSelected)
-    console.log('typeSelected: '+ typeSelected)
+    console.log('ratingSelected: ' + ratingSelected)
+    console.log('typeSelected: ' + typeSelected)
 
-    if (ratingSelected && typeSelected){
+    if (ratingSelected && typeSelected) {
         //join?
     }
-    else if(ratingSelected){
+    else if (ratingSelected) {
         // ajax for rating
+        var insertQuery = {
+            tableOne: 'recipes',
+            tableTwo: 'ratings',
+            on: ['ratings.rating_id = recipes.recipe_id'],
+        }
+       
+
+        $.ajax("/api/join/recipe/recipes&ratings&rating_id&recipe_id", {
+            type: "GET"
+        }).then(function (data) {
+            console.log(data)
+            console.log("Joined");
+        });
+
     }
-    else if(typeSelected){
-        // ajax for type
+    else if (typeSelected) {
+        $.get("/api/search/recipe/type&" + select.value, function (data) {
+            console.log(select.value);
+            console.log(data);
+            console.log("Searching for recipe");
+            searchResults(data);
+        });
     }
 
 }
