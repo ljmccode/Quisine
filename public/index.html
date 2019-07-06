@@ -103,7 +103,7 @@
 
         </div>
 
-        
+
     </div>
 
     <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -308,28 +308,46 @@
 
 </html>
 <script>
-$(".add_recipe").on("click", function(event) {
-    event.preventDefault();
 
-    // Here we grab the form elements
-    var newRecipe = {
-        name: $(".recipe_name").val().trim(),
-        status: 1,
-        link: $(".recipe_link").val().trim(),
-        type: $(".type").find(":selected").text()
-    };
+    // adding recipe to database
+    $(".add_recipe").on("click", function (event) {
+        event.preventDefault();
 
-    console.log(newRecipe);
+        // Here we grab the form elements
+        var newRecipe = {
+            name: $(".recipe_name").val().trim(),
+            status: 0,
+            link: $(".recipe_link").val().trim(),
+            type: $(".type").find(":selected").text()
+        };
 
-    $.post("/api/recipes", newRecipe,
-        function(data) {
-            console.log("Recipe added");
-            $(".added_recipe").show();
-        });
+        console.log(newRecipe);
+
+        $.post("/api/recipes", newRecipe,
+            function (data) {
+                console.log("Recipe added");
+                $(".added_recipe").show();
+            });
 
         // Clear the form when submitting
         $(".recipe_name").val("");
         $(".recipe_link").val("");
         $(".type").val("");
     })
+
+    // searching recipe in database
+    $(".search_name").on("click", findRecipe);
+    function findRecipe() {
+        console.log("clicked search")
+        event.preventDefault();
+        var recipeName = {
+            name: $(".search_by_name").val().trim(),
+        };
+        $.get("/api/recipe/" + recipeName, function(data) {
+            console.log(recipeName);
+            console.log(data);
+            console.log("Searching for recipe");
+            searchResults();
+    })
+}
 </script>

@@ -13,7 +13,7 @@ function showResults() {
     $('#results').removeClass("hide");
 
     // build results
-    buildResults();
+    allResults();
 
     //scroll to results
     var position = $('#results').offset().top;
@@ -22,7 +22,7 @@ function showResults() {
     } /* speed */);
 }
 // Builds Results container and gets DB info
-function buildResults() {
+function allResults() {
     $('#results-cards').empty();
     $.ajax("/api/recipes", {
         type: "GET"
@@ -34,6 +34,8 @@ function buildResults() {
         }
     }); 
 }
+
+
 // Makes a single card with the given object
 function makeCard(obj) {
     $.ajax("/api/images/" + obj.name, {
@@ -53,8 +55,6 @@ if(data[0]) url =  data[0].assets.preview_1500.url;
             $('<img>', { src: 'images/sample-2.jpg' }).appendTo(cardIMG);
         }
         
-
-
         var content = $('<div>', { class: 'card-content' }).appendTo(card);
         $('<span>', { class: 'card-title' }).text(obj.name).appendTo(content);
         a.attr('card_recipe_id', obj.recipe_id)
