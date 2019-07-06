@@ -32,6 +32,17 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+  app.get("/api/searchAll/recipe/:column&:value", function (req, res) {
+    recipes.findAll(req, res, function (data) {
+      res.json(data);
+    });
+  });
+
+  app.get("/api/join/recipe/:tableOne:tableTwo:columnOne:columnTwo", function (req, res) {
+    recipes.join(req, res, function (data) {
+      res.json(data);
+    });
+  });
   app.post("/api/recipes", function (req, res) {
     recipes.addRecipe(req, res, function (data) {
       res.json(data);
