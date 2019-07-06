@@ -72,7 +72,6 @@ function isValidName(name) {
         return false;
     } else {
         $(".name-not-valid").hide();
-        showResults();
     }
 }
 
@@ -88,7 +87,6 @@ function isRatingSelected() {
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
             ratingSelected = true;
-            return showResults()
         } else {
             isTypeSelected();
         }
@@ -99,24 +97,11 @@ function isRatingSelected() {
             console.log(select.value);
             if (!select.value == "") {
                 console.log("yup")
-                return showResults()
             } else {
                 // if neither rating or type is selected, error shows
                 $(".form-not-filled").show();
                 console.log("nope")
             }
-        }
-        function showResults() {
-            $('#results').removeClass("hide");
-
-            // build results
-            buildResults();
-
-            //scroll to results
-            var position = $('#results').offset().top;
-            $("body, html").animate({
-                scrollTop: position
-            } /* speed */);
         }
 
 

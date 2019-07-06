@@ -13,7 +13,7 @@ function showResults() {
     $('#results').removeClass("hide");
 
     // build results
-    buildResults();
+    allResults();
 
     //scroll to results
     var position = $('#results').offset().top;
@@ -22,7 +22,7 @@ function showResults() {
     } /* speed */);
 }
 // Builds Results container and gets DB info
-function buildResults() {
+function allResults() {
     $('#results-cards').empty();
     $.ajax("/api/recipes", {
         type: "GET"
@@ -34,6 +34,8 @@ function buildResults() {
         }
     }); 
 }
+
+
 // Makes a single card with the given object
 function makeCard(obj) {
     $.ajax("/api/images/" + obj.name, {
