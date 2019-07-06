@@ -21,12 +21,17 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/recipe/:name", function (req, res) {
+  app.get("/api/recipe/:id", function (req, res) {
     recipes.getOneRecipe(req, res, function (data) {
       res.json(data);
     });
   });
 
+  app.get("/api/search/recipe/:column&:value", function (req, res) {
+    recipes.findRecipes(req, res, function (data) {
+      res.json(data);
+    });
+  });
   app.post("/api/recipes", function (req, res) {
     recipes.addRecipe(req, res, function (data) {
       res.json(data);

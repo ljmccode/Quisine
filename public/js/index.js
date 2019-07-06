@@ -57,9 +57,9 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
 });
 
-    $(".name-not-valid").hide();
-    $(".form-not-filled").hide();
-    $(".added_recipe").hide();
+$(".name-not-valid").hide();
+$(".form-not-filled").hide();
+$(".added_recipe").hide();
 
 //Show results container
 $(document).on("click", ".search_name", isValidName);
@@ -83,6 +83,7 @@ function isRatingSelected() {
     console.log("hit")
     var radios = document.getElementsByName("rating");
     var ratingSelected = false;
+    var typeSelected = false;
 
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
@@ -96,13 +97,29 @@ function isRatingSelected() {
             var select = document.getElementById("select");
             console.log(select.value);
             if (!select.value == "") {
-                console.log("yup")
+                console.log("yup");
+                typeSelected = true;
             } else {
                 // if neither rating or type is selected, error shows
                 $(".form-not-filled").show();
                 console.log("nope")
             }
         }
+    }
+    console.log('ratingSelected: '+ ratingSelected)
+    console.log('typeSelected: '+ typeSelected)
+
+    if (ratingSelected && typeSelected){
+        //join?
+    }
+    else if(ratingSelected){
+        // ajax for rating
+    }
+    else if(typeSelected){
+        // ajax for type
+    }
+
+}
 
 
         // //adding recipe
@@ -151,23 +168,23 @@ function isRatingSelected() {
         //     console.log(link);
         // }
 
-        //search recipe name
-        $(document).on("click", ".search_name", getNameValues);
-        function getNameValues() {
-            event.preventDefault();
-            var name = $('.search_by_name').val();
-            console.log(name);
-        }
+//         //search recipe name
+//         $(document).on("click", ".search_name", getNameValues);
+//         function getNameValues() {
+//             event.preventDefault();
+//             var name = $('.search_by_name').val();
+//             console.log(name);
+//         }
 
-        //search recipe by other
-        $(document).on("click", ".search_other", getOtherValues);
-        function getOtherValues() {
-            event.preventDefault();
+//         //search recipe by other
+//         $(document).on("click", ".search_other", getOtherValues);
+//         function getOtherValues() {
+//             event.preventDefault();
 
-            var type = $('.search_by_type').val();
-            console.log(type);
+//             var type = $('.search_by_type').val();
+//             console.log(type);
 
-            console.log('Rating Func: ' + rating)
-        }
-    }
-}
+//             console.log('Rating Func: ' + rating)
+//         }
+//     }
+// }
