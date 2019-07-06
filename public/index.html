@@ -335,19 +335,6 @@
         $(".type").val("");
     })
 
-    // searching recipe in database
-    $(".search_name").on("click", findRecipe);
-    function findRecipe() {
-        console.log("clicked search")
-        event.preventDefault();
-        var recipeName = {
-            name: $(".search_by_name").val().trim(),
-        };
-        $.get("/api/recipe/" + recipeName, function(data) {
-            console.log(recipeName);
-            console.log(data);
-            console.log("Searching for recipe");
-            searchResults();
-    })
-}
+
+
 </script>

@@ -18,10 +18,12 @@ function populateModal() {
     $('.materialboxed').materialbox();
 
     let recipeID = $(this).attr("id");
+    console.log('ID: ' + recipeID)
     let recObj = {};
     $.ajax("/api/recipe/" + recipeID, {
         type: "GET"
     }).then(function (data1) {
+        console.log(data1)
         recObj = data1[0];
 
         //RATING TABLE CALL

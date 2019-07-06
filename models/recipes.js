@@ -15,8 +15,20 @@ let recipes = {
     orm.selectOne(
       {
         table: "recipes",
-        label: "name",
-        value: "%" + req.params.name + "%"
+        label: "recipe_id",
+        value: req.params.id,
+      },
+      function(data) {
+        res.json(data);
+      }
+    );
+  },
+  findRecipes: function(req, res) {
+    orm.findLike(
+      {
+        table: "recipes",
+        label: req.params.column,
+        value: '%'+ req.params.value +'%',
       },
       function(data) {
         res.json(data);
