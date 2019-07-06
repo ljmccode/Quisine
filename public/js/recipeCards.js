@@ -53,8 +53,6 @@ if(data[0]) url =  data[0].assets.preview_1500.url;
             $('<img>', { src: 'images/sample-2.jpg' }).appendTo(cardIMG);
         }
         
-
-
         var content = $('<div>', { class: 'card-content' }).appendTo(card);
         $('<span>', { class: 'card-title' }).text(obj.name).appendTo(content);
         a.attr('card_recipe_id', obj.recipe_id)

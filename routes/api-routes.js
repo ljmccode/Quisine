@@ -21,7 +21,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/recipe/:id", function (req, res) {
+  app.get("/api/recipe/:name", function (req, res) {
     recipes.getOneRecipe(req, res, function (data) {
       res.json(data);
     });

@@ -12,7 +12,8 @@ var orm = {
     },
 
     selectOne: function (query, cb) {
-      var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+      var queryString = "SELECT * FROM ?? WHERE ?? LIKE ?";
+      console.log(queryString)
       connection.query(queryString, [query.table, query.label, query.value], function (err, result) {
           if (err) {
             console.log(query)

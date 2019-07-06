@@ -15,8 +15,8 @@ let recipes = {
     orm.selectOne(
       {
         table: "recipes",
-        label: "recipe_id",
-        value: req.params.id,
+        label: "name",
+        value: "%" + req.params.name + "%"
       },
       function(data) {
         res.json(data);

@@ -96,10 +96,6 @@ function populateModal() {
 
 }
 
-
-
-
-
 function fillRatingStars(rating) {
     buildRatingSelector();
     // Change value of rating selector
