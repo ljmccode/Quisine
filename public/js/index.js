@@ -111,18 +111,34 @@ function isRatingSelected() {
     console.log('typeSelected: ' + typeSelected)
 
     if (ratingSelected && typeSelected) {
-        //join?
+        // $.ajax("/api/join/recipe/recipes/ratings/recipe_id/recipe_id/?table=ratings&column=rating&value=" + searchRating + "&tableTwo=recipes&columnTwo=type&valueTwo=" + select.value, {
+        //     type: "GET"
+        // }).then(function (data) {
+        //     console.log(data)
+        //     console.log("Joined");
+        // });
+        $.ajax("/api/join/recipe/recipes/ratings/recipe_id/recipe_id/?table=ratings&column=rating&value=" + searchRating, {
+            type: "GET"
+        }).then(function (data) {
+            let result = data.filter(obj => {
+                return obj.type == select.value
+              })
+            console.log(result)
+            console.log("Joined");
+            searchResults(result)
+        });
+
     }
     else if (ratingSelected) {
         // ajax for rating
         var insertQuery = {
             tableOne: 'recipes',
             tableTwo: 'ratings',
-            on: ['ratings.rating_id = recipes.recipe_id'],
+            on: ['ratings.rating_id = recipes.recipe_id']
         }
        
 
-        $.ajax("/api/join/recipe/recipes&ratings&rating_id&recipe_id", {
+        $.ajax("/api/join/recipe/recipes/ratings/recipe_id/recipe_id/?table=ratings&column=rating&value=" + searchRating, {
             type: "GET"
         }).then(function (data) {
             console.log(data)
@@ -137,6 +153,7 @@ function isRatingSelected() {
             console.log("Searching for recipe");
             searchResults(data);
         });
+       
     }
 
 }

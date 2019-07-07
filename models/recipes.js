@@ -94,12 +94,31 @@ let recipes = {
   // }
   ///api/join/recipe/:tableOne:tableTwo:columnOne:columnTwo
   join: function (req, res) {
+    let ormObj = {
+      select: ['recipes.recipe_id', 'name', 'type'],
+      tableOne: req.params.tableOne,
+      tableTwo: req.params.tableTwo,
+      onOne: [req.params.tableOne + '.' + req.params.columnOne],
+      onTwo: [req.params.tableTwo + '.' + req.params.columnTwo]
+    }
+    let whereArr = [];
+    let valueArr = [];
+    if (req.query.value) {
+      whereArr = [req.query.table + '.' + req.query.column];
+      valueArr = [req.query.value]
+    }
+    if (req.query.valueTwo) {
+      whereArr.push(req.query.tableTwo + '.' + req.query.columnTwo)
+      valueArr.push(req.query.valueTwo)
+    }
+
+    if (whereArr) {
+      ormObj.where = whereArr;
+      ormObj.value = valueArr;
+    }
     orm.join(
-      {
-        tableOne: req.params.tableOne,
-        tableTwo: req.params.tableTwo,
-        on: [req.params.tableTwo + '.' + req.params.columnTwo +' = '+ req.params.tableOne + '.' + req.params.columnOne ]
-      },
+
+      ormObj,
       function (data) {
         res.json(data);
       }
@@ -112,7 +131,7 @@ let recipes = {
         where: [
           {
             "recipe_id": req.params.id
-          } 
+          }
         ]
       },
       function (data) {
