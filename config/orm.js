@@ -22,7 +22,7 @@ var orm = {
       console.log(result);
     });
   },
-  
+
   findLike: function (query, cb) {
     var queryString = "SELECT * FROM ?? WHERE ?? LIKE ?";
     console.log(queryString)
@@ -38,12 +38,13 @@ var orm = {
   },
 
   join: function (query, cb) {
-    //SELECT * FROM recipes INNER JOIN ratings ON ratings.rating_id = recipes.recipe_id;
-    var queryString = "SELECT * FROM ?? INNER JOIN ?? ON ??";
-    connection.query(
+    // SELECT recipes.recipe_id, recipes.name FROM recipes INNER JOIN ratings ON recipes.recipe_id = ratings.recipe_id WHERE ratings.rating = 3;
+    var queryString = "SELECT ?? FROM ?? INNER JOIN ?? ON ?? = ?? WHERE ?? = ?";
+    var insertQuery = connection.query(
       queryString,
-      [query.tableOne, query.tableTwo, query.on[0]],
+      [query.select, query.tableOne, query.tableTwo, query.onOne, query.onTwo, query.where, query.value],
       function (err, result) {
+        console.log("Insert Query", insertQuery.sql);
         if (err) {
           throw err;
         }
