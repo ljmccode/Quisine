@@ -1,5 +1,5 @@
 {
-  "name": "ProjectCelz",
+  "name": "projectcelz",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -19,6 +19,6 @@
     "express": "^4.17.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.1",
-    "shutterstock-api": "^1.0.10"
+    "shutterstock-api": "^1.0.12"
   }
 }
